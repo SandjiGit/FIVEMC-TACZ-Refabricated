@@ -33,6 +33,7 @@
   "client": [
     "accessor.AbstractSliderButtonAccessor",
     "accessor.BlockableEventLoopAccessor",
+    "accessor.GameRendererAccessor",
     "accessor.ScreenAccessor",
     "client.AbstractPlayerMixin",
     "client.CameraMixin",

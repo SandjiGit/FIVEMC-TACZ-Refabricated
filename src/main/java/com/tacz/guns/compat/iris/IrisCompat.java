@@ -3,6 +3,7 @@ package com.tacz.guns.compat.iris;
 import com.tacz.guns.init.CompatRegistry;
 import net.fabricmc.loader.api.FabricLoader;
 import net.irisshaders.batchedentityrendering.impl.FullyBufferedMultiBufferSource;
+import net.irisshaders.iris.Iris;
 import net.irisshaders.iris.api.v0.IrisApi;
 import net.irisshaders.iris.shadows.ShadowRenderingState;
 import net.minecraft.client.renderer.MultiBufferSource;
@@ -19,6 +20,13 @@ public final class IrisCompat {
             END_BATCH_FUNCTION = IrisCompat::endBatchInner;
             IS_RENDER_SHADOW_SUPPER = IrisCompat::isRenderShadowInner;
         });
+    }
+
+    public static boolean isPackInUseQuick() {
+        if (FabricLoader.getInstance().isModLoaded(CompatRegistry.IRIS)) {
+            return Iris.isPackInUseQuick();
+        }
+        return false;
     }
 
     public static boolean isRenderShadow() {
