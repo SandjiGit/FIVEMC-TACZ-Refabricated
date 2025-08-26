@@ -58,8 +58,12 @@ public class GunModPlugin implements IModPlugin {
 
         for (var entry : recipeTypeMap.entrySet()) {
             TimelessAPI.getCommonBlockIndex(entry.getKey()).ifPresent(blockIndex -> {
-                List<GunSmithTableRecipe> recipeList = blockIndex.getFilter().filter(recipes, RecipeHolder::id).stream().map(RecipeHolder::value).toList();
-                recipeList.removeIf(recipe -> blockIndex.getData().getTabs().stream().noneMatch(tab -> Objects.equals(tab.id(), recipe.getResult().getGroup())));
+                List<GunSmithTableRecipe> recipeList = blockIndex.getFilter()
+                        .filter(recipes, RecipeHolder::id)
+                        .stream()
+                        .map(RecipeHolder::value)
+                        .filter(recipe -> blockIndex.getData().getTabs().stream().anyMatch(tab -> Objects.equals(tab.id(), recipe.getResult().getGroup())))
+                        .toList();
                 registration.addRecipes(entry.getValue(), recipeList);
             });
         }
