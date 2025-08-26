@@ -67,7 +67,7 @@ public class LivingEntityShoot {
             long alpha = System.currentTimeMillis() - data.baseTimestamp - timestamp;
             if (alpha < -300 || alpha > 300 + tickTime * 2) { // 允许 +- 300ms 的网络波动、窗口下限再扩大 2 个 tick time 时间(最坏情况射击会延迟2个 tick)
                 if (shooter instanceof ServerPlayer player) {
-                    NetworkHandler.sendToClientPlayer(new ServerMessageSyncBaseTimestamp(), player);
+                    NetworkHandler.sendToClientPlayer(ServerMessageSyncBaseTimestamp.INSTANCE, player);
                 }
                 return ShootResult.NETWORK_FAIL;
             }

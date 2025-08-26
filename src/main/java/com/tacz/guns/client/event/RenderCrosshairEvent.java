@@ -27,6 +27,7 @@ import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.GameType;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 
 @Environment(EnvType.CLIENT)
@@ -41,7 +42,7 @@ public class RenderCrosshairEvent {
     /**
      * 当玩家手上拿着枪时，播放特定动画、或瞄准时需要隐藏准心
      */
-    public static void onRenderOverlay(GuiGraphics guiGraphics, Window window, DeltaTracker deltaTracker) {
+    public static void onRenderOverlay(GuiGraphics guiGraphics, Window window, DeltaTracker deltaTracker, CallbackInfo ci) {
         LocalPlayer player = Minecraft.getInstance().player;
         if (player == null) {
             return;
@@ -49,6 +50,9 @@ public class RenderCrosshairEvent {
         if (!IGun.mainHandHoldGun(player)) {
             return;
         }
+
+        // 全面替换成自己的
+        ci.cancel();
 
         // 击中显示
         renderHitMarker(guiGraphics, window);

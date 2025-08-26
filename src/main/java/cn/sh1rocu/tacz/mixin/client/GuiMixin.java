@@ -1,7 +1,5 @@
 package cn.sh1rocu.tacz.mixin.client;
 
-import com.mojang.blaze3d.systems.RenderSystem;
-import com.tacz.guns.api.item.IGun;
 import com.tacz.guns.client.event.PreventsHotbarEvent;
 import com.tacz.guns.client.event.RenderCrosshairEvent;
 import com.tacz.guns.compat.immediatelyfast.ImmediatelyFastCompat;
@@ -9,7 +7,6 @@ import net.minecraft.client.DeltaTracker;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiGraphics;
-import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import org.spongepowered.asm.mixin.Mixin;
@@ -40,24 +37,8 @@ public class GuiMixin {
         }
     }
 
-    @Inject(method = "renderCrosshair", at = @At(value = "INVOKE", target = "Lcom/mojang/blaze3d/systems/RenderSystem;enableBlend()V", ordinal = 0, shift = At.Shift.BEFORE, remap = false))
+    @Inject(method = "renderCrosshair", at = @At("HEAD"), cancellable = true)
     private void tacz$renderCrosshairPre(GuiGraphics guiGraphics, DeltaTracker deltaTracker, CallbackInfo ci) {
-        RenderCrosshairEvent.onRenderOverlay(guiGraphics, Minecraft.getInstance().getWindow(), deltaTracker);
-    }
-
-    // 需要渲染枪械准心时取消原版渲染
-    @Inject(method = "renderCrosshair", at = @At(value = "INVOKE", target = "Lcom/mojang/blaze3d/systems/RenderSystem;enableBlend()V", ordinal = 0, shift = At.Shift.AFTER, remap = false), cancellable = true)
-    private void tacz$renderCrosshair(GuiGraphics guiGraphics, DeltaTracker deltaTracker, CallbackInfo ci) {
-        LocalPlayer player = Minecraft.getInstance().player;
-        if (player == null) {
-            return;
-        }
-        if (!IGun.mainHandHoldGun(player)) {
-            return;
-        }
-
-        RenderSystem.defaultBlendFunc();
-
-        ci.cancel();
+        RenderCrosshairEvent.onRenderOverlay(guiGraphics, Minecraft.getInstance().getWindow(), deltaTracker, ci);
     }
 }

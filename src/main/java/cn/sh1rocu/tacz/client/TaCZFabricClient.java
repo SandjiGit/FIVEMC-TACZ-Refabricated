@@ -15,24 +15,18 @@ import com.tacz.guns.client.init.ModEntitiesRender;
 import com.tacz.guns.client.init.ParticleFactories;
 import com.tacz.guns.client.input.*;
 import com.tacz.guns.init.CommonRegistry;
-import com.tacz.guns.network.HandshakeNetworking;
 import com.tacz.guns.network.NetworkHandler;
-import com.tacz.guns.network.message.handshake.AcknowledgeC2SPacket;
 import com.tacz.guns.network.message.handshake.SyncedEntityDataMappingS2CPacket;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientLifecycleEvents;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.item.v1.ItemTooltipCallback;
-import net.fabricmc.fabric.api.client.networking.v1.ClientConfigurationConnectionEvents;
 import net.fabricmc.fabric.api.client.networking.v1.ClientConfigurationNetworking;
-import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
-import net.fabricmc.fabric.api.networking.v1.ServerConfigurationConnectionEvents;
-import net.fabricmc.fabric.api.networking.v1.ServerConfigurationNetworking;
 
 public class TaCZFabricClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
-        ClientConfigurationNetworking.registerGlobalReceiver(SyncedEntityDataMappingS2CPacket.TYPE,SyncedEntityDataMappingS2CPacket::handle);
+        ClientConfigurationNetworking.registerGlobalReceiver(SyncedEntityDataMappingS2CPacket.TYPE, SyncedEntityDataMappingS2CPacket::handle);
         NetworkHandler.registerClientReceivers();
 
         ClientSetupEvent.init();
