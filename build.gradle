@@ -187,7 +187,8 @@ dependencies {
     modImplementation(include("org.ladysnake.cardinal-components-api:cardinal-components-entity:6.1.2"))
 
     // MKB
-    modImplementation(include("curse.maven:modern-keybinding-fabric-695433:6016136"))
+    // 1.21存在不能单独设置alt, ctrl, shift的bug，暂时弃用
+    // modImplementation(include("curse.maven:modern-keybinding-fabric-695433:6016136"))
 
     // Forge Config API Port
     modApi "fuzs.forgeconfigapiport:forgeconfigapiport-fabric:21.1.4"
