@@ -1,5 +1,6 @@
 package com.tacz.guns.util.block;
 
+import cn.sh1rocu.tacz.mixin.accessor.ExplosionAccessor;
 import com.google.common.collect.Sets;
 import com.tacz.guns.config.common.AmmoConfig;
 import com.tacz.guns.util.HitboxHelper;
@@ -180,7 +181,7 @@ public class ProjectileExplosion extends Explosion {
             }
 
             double damage = 1.0D - strength;
-            entity.hurt(this.damageSource, (float) damage * this.power);
+            entity.hurt(((ExplosionAccessor) this).tacz$getDamageSource(), (float) damage * this.power);
 
             if (entity instanceof LivingEntity livingEntity) {
                 damage *= (1.0F - livingEntity.getAttributeValue(Attributes.EXPLOSION_KNOCKBACK_RESISTANCE));
