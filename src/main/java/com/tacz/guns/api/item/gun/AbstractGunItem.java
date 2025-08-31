@@ -344,7 +344,7 @@ public abstract class AbstractGunItem extends Item implements IGun, IAnimationIt
     /**
      * 获取某一类 TabType 的所有枪械物品的实例。用于填充创造物品栏和枪械制造台。
      */
-    public static NonNullList<ItemStack> fillItemCategory(GunTabType type) {
+    public static NonNullList<ItemStack> fillItemCategory(GunTabType type, HolderLookup.Provider provider) {
         NonNullList<ItemStack> stacks = NonNullList.create();
         TimelessAPI.getAllCommonGunIndex().stream().sorted(idNameSort()).forEach(entry -> {
             CommonGunIndex index = entry.getValue();
@@ -358,7 +358,7 @@ public abstract class AbstractGunItem extends Item implements IGun, IAnimationIt
                         .setAmmoCount(gunData.getAmmoAmount())
                         .setHeatData(gunData.hasHeatData())
                         .setAmmoInBarrel(true)
-                        .build(RegistryAccess.fromRegistryOfRegistries(BuiltInRegistries.REGISTRY));
+                        .build(provider);
                 stacks.add(itemStack);
             }
         });

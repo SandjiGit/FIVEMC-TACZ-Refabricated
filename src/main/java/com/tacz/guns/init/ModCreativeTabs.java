@@ -26,7 +26,7 @@ public class ModCreativeTabs {
 
     }
 
-    private static final RegistryAccess registryAccess= RegistryAccess.fromRegistryOfRegistries(BuiltInRegistries.REGISTRY);
+    private static final RegistryAccess registryAccess = RegistryAccess.fromRegistryOfRegistries(BuiltInRegistries.REGISTRY);
 
     public static CreativeModeTab OTHER_TAB = regiser("other", FabricItemGroup.builder()
             .title(Component.translatable("itemGroup.tab.tacz.other"))
@@ -77,37 +77,37 @@ public class ModCreativeTabs {
     public static CreativeModeTab GUN_PISTOL_TAB = regiser("pistol", FabricItemGroup.builder()
             .title(Component.translatable("tacz.type.pistol.name"))
             .icon(() -> GunItemBuilder.create().setId(ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "glock_17")).build(registryAccess))
-            .displayItems((parameters, output) -> output.acceptAll(AbstractGunItem.fillItemCategory(GunTabType.PISTOL))).build());
+            .displayItems((parameters, output) -> output.acceptAll(AbstractGunItem.fillItemCategory(GunTabType.PISTOL, parameters.holders()))).build());
 
     public static CreativeModeTab GUN_SNIPER_TAB = regiser("sniper", FabricItemGroup.builder()
             .title(Component.translatable("tacz.type.sniper.name"))
             .icon(() -> GunItemBuilder.create().setId(ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "ai_awp")).build(registryAccess))
-            .displayItems((parameters, output) -> output.acceptAll(AbstractGunItem.fillItemCategory(GunTabType.SNIPER))).build());
+            .displayItems((parameters, output) -> output.acceptAll(AbstractGunItem.fillItemCategory(GunTabType.SNIPER, parameters.holders()))).build());
 
     public static CreativeModeTab GUN_RIFLE_TAB = regiser("rifle", FabricItemGroup.builder()
             .title(Component.translatable("tacz.type.rifle.name"))
             .icon(() -> GunItemBuilder.create().setId(ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "ak47")).build(registryAccess))
-            .displayItems((parameters, output) -> output.acceptAll(AbstractGunItem.fillItemCategory(GunTabType.RIFLE))).build());
+            .displayItems((parameters, output) -> output.acceptAll(AbstractGunItem.fillItemCategory(GunTabType.RIFLE, parameters.holders()))).build());
 
     public static CreativeModeTab GUN_SHOTGUN_TAB = regiser("shotgun", FabricItemGroup.builder()
             .title(Component.translatable("tacz.type.shotgun.name"))
             .icon(() -> GunItemBuilder.create().setId(ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "db_short")).build(registryAccess))
-            .displayItems((parameters, output) -> output.acceptAll(AbstractGunItem.fillItemCategory(GunTabType.SHOTGUN))).build());
+            .displayItems((parameters, output) -> output.acceptAll(AbstractGunItem.fillItemCategory(GunTabType.SHOTGUN, parameters.holders()))).build());
 
     public static CreativeModeTab GUN_SMG_TAB = regiser("smg", FabricItemGroup.builder()
             .title(Component.translatable("tacz.type.smg.name"))
             .icon(() -> GunItemBuilder.create().setId(ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "hk_mp5a5")).build(registryAccess))
-            .displayItems((parameters, output) -> output.acceptAll(AbstractGunItem.fillItemCategory(GunTabType.SMG))).build());
+            .displayItems((parameters, output) -> output.acceptAll(AbstractGunItem.fillItemCategory(GunTabType.SMG, parameters.holders()))).build());
 
     public static CreativeModeTab GUN_RPG_TAB = regiser("rpg", FabricItemGroup.builder()
             .title(Component.translatable("tacz.type.rpg.name"))
             .icon(() -> GunItemBuilder.create().setId(ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "rpg7")).build(registryAccess))
-            .displayItems((parameters, output) -> output.acceptAll(AbstractGunItem.fillItemCategory(GunTabType.RPG))).build());
+            .displayItems((parameters, output) -> output.acceptAll(AbstractGunItem.fillItemCategory(GunTabType.RPG, parameters.holders()))).build());
 
     public static CreativeModeTab GUN_MG_TAB = regiser("mg", FabricItemGroup.builder()
             .title(Component.translatable("tacz.type.mg.name"))
             .icon(() -> GunItemBuilder.create().setId(ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "m249")).build(registryAccess))
-            .displayItems((parameters, output) -> output.acceptAll(AbstractGunItem.fillItemCategory(GunTabType.MG))).build());
+            .displayItems((parameters, output) -> output.acceptAll(AbstractGunItem.fillItemCategory(GunTabType.MG, parameters.holders()))).build());
 
     private static CreativeModeTab regiser(String name, CreativeModeTab tab) {
         return Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB, ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, name), tab);
