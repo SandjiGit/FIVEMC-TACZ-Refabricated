@@ -189,6 +189,9 @@ dependencies {
     // MKB
     // 1.21存在不能单独设置alt, ctrl, shift的bug，暂时弃用
     // modImplementation(include("curse.maven:modern-keybinding-fabric-695433:6016136"))
+    // dev环境使用全键无冲
+    modImplementation "curse.maven:nonconflictkeys-fabric-865546:4572953"
+
 
     // Forge Config API Port
     modApi "fuzs.forgeconfigapiport:forgeconfigapiport-fabric:21.1.4"

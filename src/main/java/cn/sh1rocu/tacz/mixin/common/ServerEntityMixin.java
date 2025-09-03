@@ -29,7 +29,7 @@ public class ServerEntityMixin {
     ))
     private void sendComplexSpawnData(ServerPlayer serverPlayer, Consumer<Packet<?>> consumer, CallbackInfo ci) {
         if (this.entity instanceof IEntityExtension entityExtension) {
-            entityExtension.sendPairingData(serverPlayer, customPacketPayload -> consumer.accept(new ClientboundCustomPayloadPacket(customPacketPayload)));
+            entityExtension.tacz$sendPairingData(serverPlayer, customPacketPayload -> consumer.accept(new ClientboundCustomPayloadPacket(customPacketPayload)));
         }
     }
 }

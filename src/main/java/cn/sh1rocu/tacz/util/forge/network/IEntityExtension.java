@@ -7,7 +7,7 @@ import net.minecraft.world.entity.Entity;
 import java.util.function.Consumer;
 
 public interface IEntityExtension {
-    default void sendPairingData(ServerPlayer serverPlayer, Consumer<CustomPacketPayload> bundleBuilder) {
+    default void tacz$sendPairingData(ServerPlayer serverPlayer, Consumer<CustomPacketPayload> bundleBuilder) {
         if (this instanceof IEntityWithComplexSpawn) {
             bundleBuilder.accept(new AdvancedAddEntityPayload((Entity) this));
         }
