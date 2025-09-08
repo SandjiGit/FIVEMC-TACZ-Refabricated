@@ -8,6 +8,7 @@ import com.tacz.guns.config.ClientConfig;
 import com.tacz.guns.config.CommonConfig;
 import com.tacz.guns.config.PreLoadConfig;
 import com.tacz.guns.config.ServerConfig;
+import com.tacz.guns.crafting.NBTIngredient;
 import com.tacz.guns.event.*;
 import com.tacz.guns.event.ammo.BellRing;
 import com.tacz.guns.event.ammo.DestroyGlassBlock;
@@ -35,6 +36,7 @@ import net.fabricmc.fabric.api.networking.v1.EntityTrackingEvents;
 import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 import net.fabricmc.fabric.api.networking.v1.ServerConfigurationConnectionEvents;
 import net.fabricmc.fabric.api.networking.v1.ServerConfigurationNetworking;
+import net.fabricmc.fabric.api.recipe.v1.ingredient.CustomIngredientSerializer;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.fml.config.ModConfig;
@@ -73,6 +75,9 @@ public class TaCZFabric implements ModInitializer {
         if (FabricLoader.getInstance().getEnvironmentType() == EnvType.SERVER) {
             CommonLoadPack.loadGunPack();
         }
+
+        CustomIngredientSerializer.register(NBTIngredient.Serializer.INSTANCE);
+
         subscribeEvents();
     }
 

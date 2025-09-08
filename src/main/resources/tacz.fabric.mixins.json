@@ -15,6 +15,7 @@
     "common.BlockBehaviourMixin",
     "common.BundlePacketMixin",
     "common.EntityMixin",
+    "common.RecipeManagerMixin",
     "common.LivingEntityMixin",
     "common.PackRepositoryMixin",
     "common.PersistentEntitySectionManagerMixin",

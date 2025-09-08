@@ -2,14 +2,9 @@ package com.tacz.guns;
 
 import com.tacz.guns.api.resource.ResourceManager;
 import com.tacz.guns.init.*;
-import com.tacz.guns.network.HandshakeNetworking;
-import com.tacz.guns.network.message.handshake.SyncedEntityDataMappingS2CPacket;
 import com.tacz.guns.resource.GunPackLoader;
 import com.tacz.guns.resource.modifier.AttachmentPropertyManager;
 import net.fabricmc.api.EnvType;
-import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
-import net.fabricmc.fabric.api.networking.v1.ServerConfigurationConnectionEvents;
-import net.fabricmc.fabric.api.networking.v1.ServerConfigurationNetworking;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.server.packs.PackType;
 import org.slf4j.Logger;
