@@ -1,11 +1,5 @@
 package com.tacz.guns.init;
 
-import com.tacz.guns.GunMod;
-import net.minecraft.core.Registry;
-import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.decoration.PaintingVariant;
-
 public class ModPainting {
     public static void init() {
 

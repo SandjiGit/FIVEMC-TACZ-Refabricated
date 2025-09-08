@@ -130,9 +130,9 @@ public class GunPackList extends ContainerObjectSelectionList<GunPackList.Entry>
 
         int i2 = this.getMaxScroll();
         if (i2 > 0) {
-            int j2 = (int)((float)((this.getBottom() - this.getY()) * (this.getBottom() - this.getY())) / (float)this.getMaxPosition());
+            int j2 = (int) ((float) ((this.getBottom() - this.getY()) * (this.getBottom() - this.getY())) / (float) this.getMaxPosition());
             j2 = Mth.clamp(j2, 32, this.getBottom() - this.getY() - 8);
-            int k1 = (int)this.getScrollAmount() * (this.getBottom() - this.getY() - j2) / i2 + this.getY();
+            int k1 = (int) this.getScrollAmount() * (this.getBottom() - this.getY() - j2) / i2 + this.getY();
             if (k1 < this.getY()) {
                 k1 = this.getY();
             }

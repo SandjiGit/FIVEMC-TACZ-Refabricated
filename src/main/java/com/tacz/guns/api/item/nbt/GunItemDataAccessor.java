@@ -273,7 +273,7 @@ public interface GunItemDataAccessor extends IGun {
             return ItemStack.EMPTY;
         }
         CommonGunIndex index = TimelessAPI.getCommonGunIndex(iGun.getGunId(gun)).orElse(null);
-        if (index != null){
+        if (index != null) {
             var builtin = index.getGunData().getBuiltInAttachments();
             if (builtin.containsKey(type)) {
                 return AttachmentItemBuilder.create().setId(builtin.get(type)).build();
@@ -304,7 +304,7 @@ public interface GunItemDataAccessor extends IGun {
             return DefaultAssets.EMPTY_ATTACHMENT_ID;
         }
         CommonGunIndex index = TimelessAPI.getCommonGunIndex(iGun.getGunId(gun)).orElse(null);
-        if (index != null){
+        if (index != null) {
             var builtin = index.getGunData().getBuiltInAttachments();
             if (builtin.containsKey(type)) {
                 return builtin.get(type);
@@ -437,7 +437,8 @@ public interface GunItemDataAccessor extends IGun {
 
     @Override
     default float getHeatAmount(ItemStack gun) {
-        if(hasHeatData(gun)) return gun.getOrDefault(DataComponents.CUSTOM_DATA, CustomData.EMPTY).copyTag().getFloat(GUN_OVERHEAT_TAG);
+        if (hasHeatData(gun))
+            return gun.getOrDefault(DataComponents.CUSTOM_DATA, CustomData.EMPTY).copyTag().getFloat(GUN_OVERHEAT_TAG);
         return 0f;
     }
 

@@ -5,6 +5,7 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.DataResult;
 import com.mojang.serialization.DynamicOps;
 import com.tacz.guns.GunMod;
+import com.tacz.guns.resource.pojo.data.block.TabConfig;
 import com.tacz.guns.resource.pojo.data.recipe.GunResult;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.component.DataComponents;
@@ -12,7 +13,6 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.StreamCodec;
-import com.tacz.guns.resource.pojo.data.block.TabConfig;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.component.CustomData;
@@ -86,7 +86,7 @@ public class GunSmithTableResult {
 
     public GunSmithTableResult(ItemStack result, @Nullable ResourceLocation group) {
         this.result = result;
-        this.group = group==null ? TabConfig.TAB_EMPTY : group;
+        this.group = group == null ? TabConfig.TAB_EMPTY : group;
     }
 
 
@@ -96,12 +96,12 @@ public class GunSmithTableResult {
 
     public GunSmithTableResult(@NotNull RawGunTableResult raw, @Nullable ResourceLocation group) {
         this.raw = raw;
-        this.group = group==null ? TabConfig.TAB_EMPTY : group;
+        this.group = group == null ? TabConfig.TAB_EMPTY : group;
     }
 
     public void init(HolderLookup.Provider provider) {
         if (raw != null) {
-            GunSmithTableResult result = RawGunTableResult.init(provider,raw);
+            GunSmithTableResult result = RawGunTableResult.init(provider, raw);
             this.result = result.getResult();
             if (group == null || group.equals(TabConfig.TAB_EMPTY)) {
                 this.group = result.getGroup();

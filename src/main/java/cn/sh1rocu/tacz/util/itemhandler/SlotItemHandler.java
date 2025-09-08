@@ -1,7 +1,5 @@
 package cn.sh1rocu.tacz.util.itemhandler;
 
-import cn.sh1rocu.tacz.util.itemhandler.IItemHandler;
-import cn.sh1rocu.tacz.util.itemhandler.IItemHandlerModifiable;
 import net.minecraft.world.Container;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Player;

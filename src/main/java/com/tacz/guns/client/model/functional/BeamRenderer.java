@@ -28,7 +28,7 @@ import net.minecraft.world.item.ItemStack;
 import javax.annotation.Nonnull;
 import java.util.List;
 
-public class BeamRenderer  {
+public class BeamRenderer {
     public static final ResourceLocation LASER_BEAM_TEXTURE = ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "textures/entity/beam.png");
     private static final LaserConfig DEFAULT_LASER_CONFIG = new LaserConfig();
 
@@ -109,7 +109,7 @@ public class BeamRenderer  {
             super(pName, pSetupState, pClearState);
         }
 
-        protected static final RenderStateShard.TransparencyStateShard  LIGHTNING_ADDITIVE_TRANSPARENCY = new RenderStateShard.TransparencyStateShard(
+        protected static final RenderStateShard.TransparencyStateShard LIGHTNING_ADDITIVE_TRANSPARENCY = new RenderStateShard.TransparencyStateShard(
                 "lightning_transparency", () -> {
             RenderSystem.enableBlend();
             RenderSystem.blendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE,

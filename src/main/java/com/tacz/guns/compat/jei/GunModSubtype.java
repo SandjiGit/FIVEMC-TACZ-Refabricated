@@ -1,12 +1,8 @@
 package com.tacz.guns.compat.jei;
 
-import com.tacz.guns.api.item.IAmmo;
-import com.tacz.guns.api.item.IAmmoBox;
-import com.tacz.guns.api.item.IAttachment;
-import com.tacz.guns.api.item.IGun;
+import com.tacz.guns.api.item.*;
 import mezz.jei.api.ingredients.subtypes.ISubtypeInterpreter;
 import mezz.jei.api.ingredients.subtypes.UidContext;
-import com.tacz.guns.api.item.*;
 import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.Nullable;
 

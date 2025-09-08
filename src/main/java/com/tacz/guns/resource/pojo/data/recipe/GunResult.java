@@ -19,7 +19,8 @@ public class GunResult {
             }, map -> map).forGetter(GunResult::getAttachments)
     ).apply(instance, GunResult::new));
 
-    public GunResult() { }
+    public GunResult() {
+    }
 
     public GunResult(int ammoCount, EnumMap<AttachmentType, ResourceLocation> attachments) {
         this.ammoCount = ammoCount;

@@ -2,8 +2,6 @@ package com.tacz.guns.init;
 
 import cn.sh1rocu.tacz.api.event.AddPackFindersEvent;
 import com.tacz.guns.entity.sync.ModSyncedEntityData;
-import com.tacz.guns.network.HandshakeNetworking;
-import com.tacz.guns.network.NetworkHandler;
 import com.tacz.guns.resource.GunPackLoader;
 
 public final class CommonRegistry {

@@ -4,7 +4,6 @@ import cn.sh1rocu.tacz.util.forge.EventHooks;
 import com.llamalad7.mixinextras.sugar.Local;
 import net.minecraft.commands.Commands;
 import net.minecraft.core.LayeredRegistryAccess;
-import net.minecraft.core.RegistryAccess;
 import net.minecraft.server.RegistryLayer;
 import net.minecraft.server.ReloadableServerResources;
 import net.minecraft.server.packs.resources.PreparableReloadListener;

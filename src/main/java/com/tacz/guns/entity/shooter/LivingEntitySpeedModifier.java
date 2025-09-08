@@ -14,13 +14,12 @@ import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.item.ItemStack;
 
-import java.util.UUID;
-
 public class LivingEntitySpeedModifier {
     private static final ResourceLocation EXTRA_SPEED_MODIFIER_ID = ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "extra_speed_modifier");
     private static final ResourceLocation WEIGHT_SPEED_MODIFIER_ID = ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "weight_speed_modifier");
     private final LivingEntity shooter;
     private final ShooterDataHolder dataHolder;
+
     public LivingEntitySpeedModifier(LivingEntity shooter, ShooterDataHolder dataHolder) {
         this.shooter = shooter;
         this.dataHolder = dataHolder;
@@ -38,7 +37,7 @@ public class LivingEntitySpeedModifier {
             AttachmentCacheProperty cacheProperty = IGunOperator.fromLivingEntity(shooter).getCacheProperty();
             if (cacheProperty != null) {
                 double weightFactor = SyncConfig.WEIGHT_SPEED_MULTIPLIER.get();
-                if(weightFactor > 0){
+                if (weightFactor > 0) {
                     float targetSpeed = cacheProperty.getCache(WeightModifier.ID);
                     targetSpeed *= (float) -weightFactor;
                     AttributeModifier currentModifier = speedModifier.getModifier(WEIGHT_SPEED_MODIFIER_ID);

@@ -1,12 +1,10 @@
 package com.tacz.guns.network;
 
 import com.tacz.guns.GunMod;
-import com.tacz.guns.network.message.handshake.AcknowledgeC2SPacket;
 import com.tacz.guns.network.message.handshake.SyncedEntityDataMappingS2CPacket;
 import net.fabricmc.fabric.api.networking.v1.FabricServerConfigurationNetworkHandler;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.common.ClientboundCustomPayloadPacket;
-import net.minecraft.network.protocol.common.ServerboundCustomPayloadPacket;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.network.ConfigurationTask;

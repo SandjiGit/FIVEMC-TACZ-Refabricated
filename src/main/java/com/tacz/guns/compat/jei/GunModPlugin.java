@@ -54,7 +54,7 @@ public class GunModPlugin implements IModPlugin {
 
     @Override
     public void registerRecipes(IRecipeRegistration registration) {
-        if(Minecraft.getInstance().level==null) return;
+        if (Minecraft.getInstance().level == null) return;
         RecipeManager recipeManager = Minecraft.getInstance().level.getRecipeManager();
         List<RecipeHolder<GunSmithTableRecipe>> recipes = recipeManager.getAllRecipesFor(ModRecipe.GUN_SMITH_TABLE_CRAFTING);
 

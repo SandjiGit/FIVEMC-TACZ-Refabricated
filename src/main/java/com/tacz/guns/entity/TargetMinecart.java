@@ -2,7 +2,6 @@ package com.tacz.guns.entity;
 
 import cn.sh1rocu.tacz.api.LogicalSide;
 import cn.sh1rocu.tacz.api.extension.IMinecart;
-import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.properties.PropertyMap;
 import com.tacz.guns.api.entity.ITargetEntity;
 import com.tacz.guns.api.event.common.EntityHurtByGunEvent;

@@ -3,11 +3,11 @@ package com.tacz.guns.init;
 import cn.sh1rocu.tacz.api.event.EntityRemoveEvent;
 import com.tacz.guns.entity.sync.core.DataHolderCapabilityProvider;
 import com.tacz.guns.entity.sync.core.SyncedEntityData;
-import org.ladysnake.cca.api.v3.entity.EntityComponentFactoryRegistry;
-import org.ladysnake.cca.api.v3.entity.EntityComponentInitializer;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
 import org.jetbrains.annotations.NotNull;
+import org.ladysnake.cca.api.v3.entity.EntityComponentFactoryRegistry;
+import org.ladysnake.cca.api.v3.entity.EntityComponentInitializer;
 
 public class CapabilityRegistry implements EntityComponentInitializer {
     @Override
