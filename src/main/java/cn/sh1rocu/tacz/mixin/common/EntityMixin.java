@@ -41,21 +41,14 @@ public class EntityMixin implements IEntityPersistentData {
     @Inject(method = "saveWithoutId", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/Entity;addAdditionalSaveData(Lnet/minecraft/nbt/CompoundTag;)V"))
     private void tacz$savePersistentData(CompoundTag nbt, CallbackInfoReturnable<CompoundTag> cir) {
         if (this.tacz$persistentData != null) {
-            nbt.put("ForgeData", this.tacz$persistentData.copy());
-        }
-    }
-
-    @Inject(method = "save", at = @At("HEAD"))
-    private void save(CompoundTag nbt, CallbackInfoReturnable<CompoundTag> cir) {
-        if (tacz$persistentData != null) {
-            nbt.put("ForgeData", tacz$persistentData);
+            nbt.put("NeoForgeData", this.tacz$persistentData.copy());
         }
     }
 
     @Inject(method = "load", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/Entity;readAdditionalSaveData(Lnet/minecraft/nbt/CompoundTag;)V"))
     private void tacz$loadPersistentData(CompoundTag nbt, CallbackInfo ci) {
-        if (nbt.contains("ForgeData", 10)) {
-            tacz$persistentData = nbt.getCompound("ForgeData");
+        if (nbt.contains("NeoForgeData", 10)) {
+            tacz$persistentData = nbt.getCompound("NeoForgeData");
         }
     }
 }
