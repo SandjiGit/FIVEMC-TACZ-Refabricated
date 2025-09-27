@@ -30,9 +30,18 @@ public class ConfigCommand {
             return 0;
         }
         switch (key) {
-            case defaultTableLimit -> SyncConfig.ENABLE_TABLE_FILTER.set(state);
-            case serverShootNetworkCheck -> SyncConfig.SERVER_SHOOT_NETWORK_V.set(state);
-            case serverShootCooldownCheck -> SyncConfig.SERVER_SHOOT_COOLDOWN_V.set(state);
+            case defaultTableLimit -> {
+                SyncConfig.ENABLE_TABLE_FILTER.set(state);
+                SyncConfig.ENABLE_TABLE_FILTER.save();
+            }
+            case serverShootNetworkCheck -> {
+                SyncConfig.SERVER_SHOOT_NETWORK_V.set(state);
+                SyncConfig.SERVER_SHOOT_NETWORK_V.save();
+            }
+            case serverShootCooldownCheck -> {
+                SyncConfig.SERVER_SHOOT_COOLDOWN_V.set(state);
+                SyncConfig.SERVER_SHOOT_COOLDOWN_V.save();
+            }
         }
         context.getSource().sendSystemMessage(Component.translatable(key.lang + "." + (state ? "enabled" : "disabled")));
 
