@@ -180,7 +180,9 @@ dependencies {
     // kubejs开发环境引入
     // modCompileOnly "dev.latvian.mods:kubejs-fabric:${kubejs_version}"
     // modCompileOnly "dev.latvian.mods:rhino-fabric:${rhino_version}"
-    // modCompileOnly "dev.architectury:architectury-fabric:${architectury_version}"
+
+    // For REI
+    modCompileOnly "dev.architectury:architectury-fabric:${architectury_version}"
 
     // CCA
     modImplementation(include("org.ladysnake.cardinal-components-api:cardinal-components-base:6.1.2"))
@@ -206,6 +208,11 @@ dependencies {
 
     modRuntimeOnly "maven.modrinth:tweakeroo:0.21.59"
     modRuntimeOnly "maven.modrinth:malilib:0.21.9"
+
+    // REI
+    modRuntimeOnly "me.shedaniel:RoughlyEnoughItems-fabric:$rei_version"
+    modCompileOnly "me.shedaniel:RoughlyEnoughItems-api-fabric:$rei_version"
+    modCompileOnly "me.shedaniel:RoughlyEnoughItems-default-plugin-fabric:$rei_version"
 }
 
 processResources {
@@ -246,12 +253,14 @@ jar {
 publishing {
     publications {
         create("mavenJava", MavenPublication) {
-            artifactId = project.archives_base_name
+            artifactId = "${project.archives_base_name}-${project.minecraft_version}"
             from components.java
         }
     }
 
     repositories {
-
+        maven {
+            url "file:///D:/github_maven/Sh1roCu_MCRepo/repository"
+        }
     }
 }
