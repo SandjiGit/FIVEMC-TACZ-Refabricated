@@ -8,7 +8,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 
 public interface IItem {
-    default boolean onEntitySwing(ItemStack stack, LivingEntity entity) {
+    default boolean tacz$onEntitySwing(ItemStack stack, LivingEntity entity) {
         return false;
     }
 

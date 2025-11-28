@@ -91,7 +91,7 @@ public class TargetMinecart extends AbstractMinecart implements ITargetEntity, I
     }
 
     @Override
-    public boolean canBeRidden() {
+    public boolean tacz$canBeRidden() {
         return false;
     }
 
