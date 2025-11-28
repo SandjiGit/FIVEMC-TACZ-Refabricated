@@ -213,6 +213,14 @@ dependencies {
     modRuntimeOnly "me.shedaniel:RoughlyEnoughItems-fabric:$rei_version"
     modCompileOnly "me.shedaniel:RoughlyEnoughItems-api-fabric:$rei_version"
     modCompileOnly "me.shedaniel:RoughlyEnoughItems-default-plugin-fabric:$rei_version"
+
+    modRuntimeOnly "maven.modrinth:flashback:pOGQFvgK"
+    runtimeOnly("com.moulberry:mixinconstraints:1.0.8")
+    modRuntimeOnly("com.moulberry:lattice:1.2.18") {
+        attributes {
+            attribute(Attribute.of("earth.terrarium.cloche.modLoader", String), "fabric")
+        }
+    }
 }
 
 processResources {
