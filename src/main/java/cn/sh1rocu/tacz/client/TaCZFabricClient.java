@@ -94,6 +94,9 @@ public class TaCZFabricClient implements ClientModInitializer {
 
         InputEvent.MouseButton.Post.EVENT.register(AimKey::onAimPress);
         ClientTickEvents.END_CLIENT_TICK.register(AimKey::cancelAim);
+        ClientTickEvents.START_CLIENT_TICK.register(AimKey::onAimHoldingPreInput);
+        ClientTickEvents.END_CLIENT_TICK.register(AimKey::onAimHoldingPreInput);
+
 
         InputEvent.Key.EVENT.register(ConfigKey::onOpenConfig);
         InputEvent.Key.EVENT.register(CrawlKey::onCrawlPress);
