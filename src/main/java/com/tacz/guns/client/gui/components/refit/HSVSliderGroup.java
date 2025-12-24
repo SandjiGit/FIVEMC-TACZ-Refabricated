@@ -1,11 +1,12 @@
 package com.tacz.guns.client.gui.components.refit;
 
 import cn.sh1rocu.tacz.util.forge.ExtendedSlider;
-import com.tacz.guns.api.item.IAttachment;
 import com.tacz.guns.api.item.IGun;
 import com.tacz.guns.api.item.attachment.AttachmentType;
+import com.tacz.guns.api.item.nbt.AttachmentItemDataAccessor;
 import com.tacz.guns.util.LaserColorUtil;
 import net.minecraft.client.Minecraft;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.item.ItemStack;
@@ -57,10 +58,11 @@ public class HSVSliderGroup {
                 return;
             }
 
-            ItemStack laser = iGun.getAttachment(Minecraft.getInstance().level.registryAccess(), gun, type);
-            if (laser.getItem() instanceof IAttachment iAttachment) {
-                iAttachment.setLaserColor(laser, rgb_new);
+            CompoundTag tag = iGun.getAttachmentTag(gun, type);
+            if (tag != null) {
+                AttachmentItemDataAccessor.setLaserColorToTag(tag, rgb_new);
             }
+            iGun.setAttachmentTag(gun, type, tag);
         }
     }
 
