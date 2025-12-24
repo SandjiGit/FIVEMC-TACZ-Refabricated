@@ -1,6 +1,7 @@
 package cn.sh1rocu.tacz.mixin.common;
 
 import cn.sh1rocu.tacz.api.extension.IBlockExtension;
+import com.llamalad7.mixinextras.injector.v2.WrapWithCondition;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.llamalad7.mixinextras.sugar.Local;
@@ -22,7 +23,7 @@ public class BlockBehaviourMixin {
                     target = "Lnet/minecraft/world/level/block/Block;wasExploded(Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/Explosion;)V"
             )
     )
-    private void tlm$onBlockExploded(Block instance, Level level, BlockPos blockPos, Explosion explosion, Operation<Void> original, @Local(argsOnly = true) BlockState state) {
+    private void tacz$onBlockExploded(Block instance, Level level, BlockPos blockPos, Explosion explosion, Operation<Void> original, @Local(argsOnly = true) BlockState state) {
         if (state.getBlock() instanceof IBlockExtension block) {
             block.tacz$onBlockExploded(state, level, blockPos, explosion);
         } else {
@@ -30,18 +31,8 @@ public class BlockBehaviourMixin {
         }
     }
 
-    @WrapOperation(
-            method = "onExplosionHit",
-            at = @At(
-                    value = "INVOKE",
-                    target = "Lnet/minecraft/world/level/Level;setBlock(Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;I)Z"
-            )
-    )
-    private boolean tlm$dontJust2Air(Level instance, BlockPos pos, BlockState newState, int flags, Operation<Boolean> original, @Local(argsOnly = true) BlockState state) {
-        if (state.getBlock() instanceof IBlockExtension) {
-            return false;
-        } else {
-            return original.call(instance, pos, state, flags);
-        }
+    @WrapWithCondition(method = "onExplosionHit", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/Level;setBlock(Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;I)Z"))
+    private boolean tacz$dontJust2Air(Level level, BlockPos pos, BlockState airState, int flag, @Local(argsOnly = true) BlockState state) {
+        return !(state.getBlock() instanceof IBlockExtension);
     }
 }
