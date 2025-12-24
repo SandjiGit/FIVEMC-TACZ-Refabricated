@@ -5,6 +5,8 @@ import com.mojang.serialization.Codec;
 import net.minecraft.util.StringRepresentable;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Locale;
+
 public enum AttachmentType implements StringRepresentable {
     /**
      * 瞄具
@@ -45,7 +47,7 @@ public enum AttachmentType implements StringRepresentable {
 
     @Override
     public @NotNull String getSerializedName() {
-        return name();
+        return name().toLowerCase(Locale.ROOT);
     }
 
     public static AttachmentType fromId(int id) {
