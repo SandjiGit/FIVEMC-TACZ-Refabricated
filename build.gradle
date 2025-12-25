@@ -150,7 +150,7 @@ dependencies {
     modCompileOnly("mezz.jei:jei-1.21.1-common-api:${jei_version}")
     modCompileOnly("mezz.jei:jei-1.21.1-fabric-api:${jei_version}")
     // at runtime, use the full JEI jar for Fabric
-    // modRuntimeOnly("mezz.jei:jei-1.21.1-fabric:${jei_version}")
+    modRuntimeOnly("mezz.jei:jei-1.21.1-fabric:${jei_version}")
 
     // 假人，测试近战伤害
     modRuntimeOnly "curse.maven:selene-499980:6914081"
