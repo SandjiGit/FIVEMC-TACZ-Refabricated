@@ -88,10 +88,10 @@ public class ClientSetupEvent {
 
     public static void registerGuiOverlays() {
         // 注册 HUD
-        HudRenderCallback.EVENT.register(GunHudOverlay::render);
-        HudRenderCallback.EVENT.register(HeatBarOverlay::render);
-        HudRenderCallback.EVENT.register(InteractKeyTextOverlay::render);
-        HudRenderCallback.EVENT.register(KillAmountOverlay::render);
+        HudRenderCallback.EVENT.register(GunHudOverlay.INSTANCE::render);
+        HudRenderCallback.EVENT.register(HeatBarOverlay.INSTANCE::render);
+        HudRenderCallback.EVENT.register(InteractKeyTextOverlay.INSTANCE::render);
+        HudRenderCallback.EVENT.register(KillAmountOverlay.INSTANCE::render);
     }
 
     public static void onClientSetup() {

@@ -9,6 +9,7 @@ import net.minecraft.client.DeltaTracker;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.LayeredDraw;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
@@ -18,9 +19,13 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
 import org.apache.commons.lang3.StringUtils;
+import org.jetbrains.annotations.NotNull;
 
-public class InteractKeyTextOverlay {
-    public static void render(GuiGraphics graphics, DeltaTracker deltaTracker) {
+public class InteractKeyTextOverlay implements LayeredDraw.Layer {
+    public static final InteractKeyTextOverlay INSTANCE = new InteractKeyTextOverlay();
+
+    @Override
+    public void render(GuiGraphics graphics, @NotNull DeltaTracker deltaTracker) {
         int width = graphics.guiWidth();
         int height = graphics.guiHeight();
 

@@ -23,16 +23,18 @@ import net.minecraft.client.DeltaTracker;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.LayeredDraw;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.item.ItemStack;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.text.DecimalFormat;
 
-public class GunHudOverlay {
+public class GunHudOverlay implements LayeredDraw.Layer {
     private static final ResourceLocation SEMI = ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "textures/hud/fire_mode_semi.png");
     private static final ResourceLocation AUTO = ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "textures/hud/fire_mode_auto.png");
     private static final ResourceLocation BURST = ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "textures/hud/fire_mode_burst.png");
@@ -48,7 +50,10 @@ public class GunHudOverlay {
 
     private static final int MAX_AMMO_COUNT = 9999;
 
-    public static void render(GuiGraphics graphics, DeltaTracker deltaTracker) {
+    public static final GunHudOverlay INSTANCE = new GunHudOverlay();
+
+    @Override
+    public void render(GuiGraphics graphics, @NotNull DeltaTracker deltaTracker) {
         int width = graphics.guiWidth();
         int height = graphics.guiHeight();
 

@@ -91,6 +91,8 @@ public class RenderCrosshairEvent {
                 renderCrosshair(guiGraphics, window);
             }
         });
+        RenderSystem.defaultBlendFunc();
+        RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
     }
 
     public static void onRenderTick(RenderTickEvent event) {

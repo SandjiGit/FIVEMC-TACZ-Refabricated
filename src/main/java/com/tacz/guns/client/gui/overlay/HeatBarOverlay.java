@@ -14,19 +14,24 @@ import net.minecraft.client.DeltaTracker;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.LayeredDraw;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.FastColor;
 import net.minecraft.world.item.ItemStack;
+import org.jetbrains.annotations.NotNull;
 
 import java.text.DecimalFormat;
 
-public class HeatBarOverlay {
+public class HeatBarOverlay implements LayeredDraw.Layer {
     private static final ResourceLocation HEATBASE = ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "textures/hud/heat_base.png");
     private static final DecimalFormat HEAT_FORMAT_PERCENT = new DecimalFormat("0.0%");
     private static float heatScale = 0.25f;
 
-    public static void render(GuiGraphics graphics, DeltaTracker deltaTracker) {
+    public static final HeatBarOverlay INSTANCE = new HeatBarOverlay();
+
+    @Override
+    public void render(GuiGraphics graphics, @NotNull DeltaTracker deltaTracker) {
         int width = graphics.guiWidth();
         int height = graphics.guiHeight();
 

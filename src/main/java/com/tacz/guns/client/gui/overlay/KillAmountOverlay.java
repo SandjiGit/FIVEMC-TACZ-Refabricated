@@ -8,15 +8,20 @@ import com.tacz.guns.config.client.RenderConfig;
 import net.minecraft.client.DeltaTracker;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.LayeredDraw;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.util.Mth;
 import net.minecraft.world.item.ItemStack;
+import org.jetbrains.annotations.NotNull;
 
-public class KillAmountOverlay {
+public class KillAmountOverlay implements LayeredDraw.Layer {
     private static long killTimestamp = -1L;
     private static int killAmount = 0;
 
-    public static void render(GuiGraphics graphics, DeltaTracker deltaTracker) {
+    public static final KillAmountOverlay INSTANCE = new KillAmountOverlay();
+
+    @Override
+    public void render(GuiGraphics graphics, @NotNull DeltaTracker deltaTracker) {
         int width = graphics.guiWidth();
         int height = graphics.guiHeight();
 
