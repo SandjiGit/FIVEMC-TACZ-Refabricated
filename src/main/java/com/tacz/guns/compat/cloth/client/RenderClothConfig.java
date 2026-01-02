@@ -130,5 +130,12 @@ public class RenderClothConfig {
                     RenderConfig.ENABLE_TACZ_ID_IN_TOOLTIP.set(value);
                     RenderConfig.ENABLE_TACZ_ID_IN_TOOLTIP.save();
                 }).build());
+
+        render.addEntry(entryBuilder.startBooleanToggle(Component.translatable("config.tacz.client.render.enable_translucent"), RenderConfig.BLOCK_ENTITY_TRANSLUCENT.get())
+                .setDefaultValue(false).setTooltip(Component.translatable("config.tacz.client.render.enable_translucent.desc"))
+                .setSaveConsumer(value->{
+                    RenderConfig.BLOCK_ENTITY_TRANSLUCENT.set(value);
+                    RenderConfig.BLOCK_ENTITY_TRANSLUCENT.save();
+                }).build());
     }
 }

@@ -221,6 +221,9 @@ dependencies {
             attribute(Attribute.of("earth.terrarium.cloche.modLoader", String), "fabric")
         }
     }
+
+    // 加速渲染
+    modImplementation "maven.modrinth:accrelatedrendering-refabricated:pgm8CkON"
 }
 
 processResources {
