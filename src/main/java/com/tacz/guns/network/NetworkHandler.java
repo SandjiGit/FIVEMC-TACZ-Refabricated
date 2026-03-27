@@ -101,11 +101,10 @@ public class NetworkHandler {
      * 发送给所有监听此实体的玩家
      */
     public static void sendToTrackingEntityAndSelf(Entity centerEntity, CustomPacketPayload message) {
-        if (centerEntity.level() instanceof ServerLevel serverLevel) {
-            for (ServerPlayer player : PlayerLookup.tracking(serverLevel, centerEntity.blockPosition())) {
-                ServerPlayNetworking.send(player, message);
-            }
+        if (centerEntity instanceof ServerPlayer player) {
+            sendToClientPlayer(message, player);
         }
+        sendToTrackingEntity(message, centerEntity);
     }
 
     public static void sendToAllPlayers(CustomPacketPayload message, MinecraftServer server) {
