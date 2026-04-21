@@ -1,5 +1,6 @@
 package com.tacz.guns.client.init;
 
+import com.mojang.blaze3d.systems.RenderSystem;
 import com.tacz.guns.api.client.other.ThirdPersonManager;
 import com.tacz.guns.client.gui.overlay.GunHudOverlay;
 import com.tacz.guns.client.gui.overlay.HeatBarOverlay;
@@ -32,6 +33,7 @@ import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 import net.fabricmc.fabric.api.client.rendering.v1.TooltipComponentCallback;
 import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
 import net.minecraft.client.KeyMapping;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.server.packs.PackType;
 
@@ -41,7 +43,7 @@ public class ClientSetupEvent {
         registerKeyMappings();
         registerClientTooltips();
         registerGuiOverlays();
-        ClientLifecycleEvents.CLIENT_STARTED.register(client -> onClientSetup());
+        ClientLifecycleEvents.CLIENT_STARTED.register(ClientSetupEvent::onClientSetup);
         onClientResourceReload();
     }
 
@@ -95,7 +97,7 @@ public class ClientSetupEvent {
         HudRenderCallback.EVENT.register(KillAmountOverlay.INSTANCE::render);
     }
 
-    public static void onClientSetup() {
+    public static void onClientSetup(Minecraft minecraft) {
         // 注册自己的的硬编码第三人称动画
         ThirdPersonManager.registerDefault();
 
@@ -123,6 +125,8 @@ public class ClientSetupEvent {
 
         ZoomifyCompat.init();
         ImmediatelyFastCompat.init();
+
+        RenderSystem.recordRenderCall(() -> minecraft.getMainRenderTarget().tacz$enableStencil());
     }
 
     public static void onClientResourceReload() {
