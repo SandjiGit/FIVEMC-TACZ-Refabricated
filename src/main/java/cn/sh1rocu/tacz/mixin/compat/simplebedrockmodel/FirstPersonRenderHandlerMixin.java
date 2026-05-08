@@ -21,7 +21,15 @@ import org.spongepowered.asm.mixin.injection.At;
 @Mixin(FirstPersonRenderHandler.class)
 public class FirstPersonRenderHandlerMixin {
     // FIXME: 跟FirstPersonRenderEvent#onRenderHand一样的暴力解决方式（来自MUKSC的tacz-neoforge），已知会导致无法兼容加速渲染
-    @WrapWithCondition(remap = false, method = "onRenderHand(Lcn/sh1rocu/simplebedrockmodel/api/event/RenderHandEvent;)V", at = @At(value = "INVOKE", target = "Lcom/github/mcmodderanchor/simplebedrockmodel/v1/client/renderer/IFPGeoItemRenderer;renderFirstPerson(Lnet/minecraft/client/player/LocalPlayer;Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemDisplayContext;Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;IF)V"))
+    @WrapWithCondition(
+            remap = false,
+            method = "onRenderHand(Lcn/sh1rocu/simplebedrockmodel/api/event/RenderHandEvent;)V",
+            at = @At(
+                    remap = true,
+                    value = "INVOKE",
+                    target = "Lcom/github/mcmodderanchor/simplebedrockmodel/v1/client/renderer/IFPGeoItemRenderer;renderFirstPerson(Lnet/minecraft/client/player/LocalPlayer;Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemDisplayContext;Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;IF)V"
+            )
+    )
     private static boolean tacz$onRenderHand(IFPGeoItemRenderer instance, LocalPlayer player, ItemStack itemStack, ItemDisplayContext itemDisplayContext, PoseStack poseStack, MultiBufferSource multiBufferSource, int i, float v, @Local(argsOnly = true) RenderHandEvent event) {
         if (instance instanceof AnimateGeoItemRenderer<?, ?>) {
             ItemDisplayContext transformType;
