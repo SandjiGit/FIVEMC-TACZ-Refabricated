@@ -68,7 +68,7 @@
       "id": "tacz:alternative_proj",
       "name": "tacz.type.alternative_proj.name",
       "icon": {
-        "item": "minecraft:arrow"
+        "id": "minecraft:arrow"
       }
     }
   ]

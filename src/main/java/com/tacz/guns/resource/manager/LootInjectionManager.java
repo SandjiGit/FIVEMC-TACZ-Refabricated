@@ -55,7 +55,7 @@ public class LootInjectionManager extends SimplePreparableReloadListener<Map<Res
         return injections.getOrDefault(lootTable, Collections.emptyList());
     }
 
-    public static final ResourceLocation ID = new ResourceLocation(GunMod.MOD_ID, "loot_injection_loader");
+    public static final ResourceLocation ID = ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "loot_injection_loader");
 
     @Override
     public ResourceLocation getFabricId() {

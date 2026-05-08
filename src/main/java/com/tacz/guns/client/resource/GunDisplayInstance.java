@@ -1,5 +1,6 @@
 package com.tacz.guns.client.resource;
 
+import cn.sh1rocu.tacz.TaCZFabric;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
@@ -29,7 +30,6 @@ import com.tacz.guns.util.ColorHex;
 import it.unimi.dsi.fastutil.ints.Int2ObjectArrayMap;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.MissingTextureAtlasSprite;
 import net.minecraft.commands.arguments.ParticleArgument;
 import net.minecraft.resources.ResourceLocation;
@@ -603,7 +603,7 @@ public class GunDisplayInstance {
             try {
                 String name = particle.getName();
                 if (StringUtils.isNoneBlank()) {
-                    particle.setParticleOptions(ParticleArgument.readParticle(new StringReader(name), Minecraft.getInstance().level.registryAccess()));
+                    particle.setParticleOptions(ParticleArgument.readParticle(new StringReader(name), TaCZFabric.VANILLA_ACCESS));
                     Preconditions.checkArgument(particle.getCount() > 0, "particle count must be greater than 0");
                     Preconditions.checkArgument(particle.getLifeTime() > 0, "particle life time must be greater than 0");
                     this.particle = particle;

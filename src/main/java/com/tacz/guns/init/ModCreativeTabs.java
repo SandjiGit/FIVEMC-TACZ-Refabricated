@@ -1,5 +1,6 @@
 package com.tacz.guns.init;
 
+import cn.sh1rocu.tacz.TaCZFabric;
 import com.tacz.guns.GunMod;
 import com.tacz.guns.api.DefaultAssets;
 import com.tacz.guns.api.item.GunTabType;
@@ -25,8 +26,6 @@ public class ModCreativeTabs {
     public static void init() {
 
     }
-
-    private static final RegistryAccess registryAccess = RegistryAccess.fromRegistryOfRegistries(BuiltInRegistries.REGISTRY);
 
     public static CreativeModeTab OTHER_TAB = regiser("other", FabricItemGroup.builder()
             .title(Component.translatable("itemGroup.tab.tacz.other"))
@@ -76,37 +75,37 @@ public class ModCreativeTabs {
 
     public static CreativeModeTab GUN_PISTOL_TAB = regiser("pistol", FabricItemGroup.builder()
             .title(Component.translatable("tacz.type.pistol.name"))
-            .icon(() -> GunItemBuilder.create().setId(ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "glock_17")).build(registryAccess))
+            .icon(() -> GunItemBuilder.create().setId(ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "glock_17")).build(TaCZFabric.VANILLA_ACCESS))
             .displayItems((parameters, output) -> output.acceptAll(AbstractGunItem.fillItemCategory(GunTabType.PISTOL, parameters.holders()))).build());
 
     public static CreativeModeTab GUN_SNIPER_TAB = regiser("sniper", FabricItemGroup.builder()
             .title(Component.translatable("tacz.type.sniper.name"))
-            .icon(() -> GunItemBuilder.create().setId(ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "ai_awp")).build(registryAccess))
+            .icon(() -> GunItemBuilder.create().setId(ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "ai_awp")).build(TaCZFabric.VANILLA_ACCESS))
             .displayItems((parameters, output) -> output.acceptAll(AbstractGunItem.fillItemCategory(GunTabType.SNIPER, parameters.holders()))).build());
 
     public static CreativeModeTab GUN_RIFLE_TAB = regiser("rifle", FabricItemGroup.builder()
             .title(Component.translatable("tacz.type.rifle.name"))
-            .icon(() -> GunItemBuilder.create().setId(ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "ak47")).build(registryAccess))
+            .icon(() -> GunItemBuilder.create().setId(ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "ak47")).build(TaCZFabric.VANILLA_ACCESS))
             .displayItems((parameters, output) -> output.acceptAll(AbstractGunItem.fillItemCategory(GunTabType.RIFLE, parameters.holders()))).build());
 
     public static CreativeModeTab GUN_SHOTGUN_TAB = regiser("shotgun", FabricItemGroup.builder()
             .title(Component.translatable("tacz.type.shotgun.name"))
-            .icon(() -> GunItemBuilder.create().setId(ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "db_short")).build(registryAccess))
+            .icon(() -> GunItemBuilder.create().setId(ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "db_short")).build(TaCZFabric.VANILLA_ACCESS))
             .displayItems((parameters, output) -> output.acceptAll(AbstractGunItem.fillItemCategory(GunTabType.SHOTGUN, parameters.holders()))).build());
 
     public static CreativeModeTab GUN_SMG_TAB = regiser("smg", FabricItemGroup.builder()
             .title(Component.translatable("tacz.type.smg.name"))
-            .icon(() -> GunItemBuilder.create().setId(ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "hk_mp5a5")).build(registryAccess))
+            .icon(() -> GunItemBuilder.create().setId(ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "hk_mp5a5")).build(TaCZFabric.VANILLA_ACCESS))
             .displayItems((parameters, output) -> output.acceptAll(AbstractGunItem.fillItemCategory(GunTabType.SMG, parameters.holders()))).build());
 
     public static CreativeModeTab GUN_RPG_TAB = regiser("rpg", FabricItemGroup.builder()
             .title(Component.translatable("tacz.type.rpg.name"))
-            .icon(() -> GunItemBuilder.create().setId(ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "rpg7")).build(registryAccess))
+            .icon(() -> GunItemBuilder.create().setId(ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "rpg7")).build(TaCZFabric.VANILLA_ACCESS))
             .displayItems((parameters, output) -> output.acceptAll(AbstractGunItem.fillItemCategory(GunTabType.RPG, parameters.holders()))).build());
 
     public static CreativeModeTab GUN_MG_TAB = regiser("mg", FabricItemGroup.builder()
             .title(Component.translatable("tacz.type.mg.name"))
-            .icon(() -> GunItemBuilder.create().setId(ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "m249")).build(registryAccess))
+            .icon(() -> GunItemBuilder.create().setId(ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "m249")).build(TaCZFabric.VANILLA_ACCESS))
             .displayItems((parameters, output) -> output.acceptAll(AbstractGunItem.fillItemCategory(GunTabType.MG, parameters.holders()))).build());
 
     private static CreativeModeTab regiser(String name, CreativeModeTab tab) {

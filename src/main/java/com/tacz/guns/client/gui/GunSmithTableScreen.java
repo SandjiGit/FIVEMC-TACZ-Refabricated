@@ -22,6 +22,7 @@ import com.tacz.guns.client.gui.components.smith.ResultButton;
 import com.tacz.guns.client.gui.components.smith.TypeButton;
 import com.tacz.guns.client.resource.ClientAssetsManager;
 import com.tacz.guns.client.resource.pojo.PackInfo;
+import com.tacz.guns.config.client.RenderConfig;
 import com.tacz.guns.config.sync.SyncConfig;
 import com.tacz.guns.crafting.GunSmithTableIngredient;
 import com.tacz.guns.crafting.GunSmithTableRecipe;
@@ -240,7 +241,7 @@ public class GunSmithTableScreen extends AbstractContainerScreen<GunSmithTableMe
             this.playerIngredientCount = null;
             return;
         }
-        boolean selectedRecipeExists = this.selectedRecipe != null && selectedRecipeList.contains(this.selectedRecipe.getId());
+        boolean selectedRecipeExists = this.selectedRecipe != null && selectedRecipeList.contains(this.selectedRecipe.id());
         if (!selectedRecipeExists) {
             this.selectedRecipe = this.getSelectedRecipe(selectedRecipeList.get(0));
         }

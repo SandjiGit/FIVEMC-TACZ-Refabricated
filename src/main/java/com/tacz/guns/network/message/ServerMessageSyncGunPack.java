@@ -42,7 +42,8 @@ public class ServerMessageSyncGunPack implements CustomPacketPayload {
 
     public static void handle(ServerMessageSyncGunPack message, ClientPlayNetworking.Context context) {
         context.client().execute(() -> {
-                    boolean remoteConnection = context.client().getConnection() != null && !context.client().getConnection().isMemoryConnection();
+                    var connection = context.client().getConnection();
+                    boolean remoteConnection = connection != null && !connection.getConnection().isMemoryConnection();
                     doSync(message, remoteConnection);
                 }
         );

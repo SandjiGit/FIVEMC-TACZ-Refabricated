@@ -12,6 +12,7 @@ import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.rendering.v1.BuiltinItemRendererRegistry;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
+import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
@@ -62,8 +63,16 @@ public class FirstPersonRenderEvent {
             // 防止内存泄漏
             IrisCompat.endBatch(Minecraft.getInstance().renderBuffers().bufferSource());
 
-            renderer.renderFirstPerson(player, stack, transformType, event.getPoseStack(), event.getMultiBufferSource(),
-                    event.getPackedLight(), event.getPartialTick());
+            GameRenderer gameRenderer = Minecraft.getInstance().gameRenderer;
+            HandRenderer.INSTANCE.renderSolid((poseStack) -> {
+                renderer.renderFirstPerson(
+                        player, stack, transformType,
+                        poseStack == null ? event.getPoseStack() : poseStack,
+                        event.getMultiBufferSource(),
+                        event.getPackedLight(),
+                        event.getPartialTick()
+                );
+            }, event.getPartialTick(), gameRenderer.getMainCamera(), gameRenderer);
             event.setCanceled(true);
         }
     }
