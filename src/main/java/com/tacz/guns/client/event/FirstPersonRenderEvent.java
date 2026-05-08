@@ -5,6 +5,7 @@ import com.tacz.guns.api.client.animation.statemachine.AnimationStateMachine;
 import com.tacz.guns.api.client.other.KeepingItemRenderer;
 import com.tacz.guns.api.item.IGun;
 import com.tacz.guns.client.renderer.item.AnimateGeoItemRenderer;
+import com.tacz.guns.client.renderer.other.HandRenderer;
 import com.tacz.guns.compat.iris.IrisCompat;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
