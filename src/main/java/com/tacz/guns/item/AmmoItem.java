@@ -25,7 +25,9 @@ import net.minecraft.world.item.TooltipFlag;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 public class AmmoItem extends Item implements AmmoItemDataAccessor, IItem {
@@ -52,9 +54,13 @@ public class AmmoItem extends Item implements AmmoItemDataAccessor, IItem {
         return super.getName(stack);
     }
 
+    private static Comparator<Map.Entry<ResourceLocation, CommonAmmoIndex>> idNameSort() {
+        return Comparator.comparingInt(m -> m.getValue().getSort());
+    }
+
     public static NonNullList<ItemStack> fillItemCategory() {
         NonNullList<ItemStack> stacks = NonNullList.create();
-        TimelessAPI.getAllCommonAmmoIndex().forEach(entry -> {
+        TimelessAPI.getAllCommonAmmoIndex().stream().sorted(idNameSort()).forEach(entry -> {
             ItemStack itemStack = AmmoItemBuilder.create().setId(entry.getKey()).build();
             stacks.add(itemStack);
         });

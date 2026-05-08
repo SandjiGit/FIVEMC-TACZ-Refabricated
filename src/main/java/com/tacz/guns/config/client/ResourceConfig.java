@@ -14,9 +14,6 @@ public class ResourceConfig {
                 "If a render needs an asset before warmup finishes, the render thread will wait for it once.");
         ENABLE_LAZY_CLIENT_ASSET_LOAD = builder.define("EnableLazyClientAssetLoad", true);
 
-        builder.comment("Load TACZ sound buffers on demand instead of decoding all gun-pack sounds during resource reload.");
-        ENABLE_LAZY_SOUND_LOAD = builder.define("EnableLazySoundLoad", true);
-
         builder.pop();
     }
 }

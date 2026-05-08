@@ -39,7 +39,11 @@ import net.fabricmc.fabric.api.networking.v1.ServerConfigurationNetworking;
 import net.fabricmc.fabric.api.recipe.v1.ingredient.CustomIngredientSerializer;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.MinecraftServer;
 import net.neoforged.fml.config.ModConfig;
+import org.jetbrains.annotations.Nullable;
+
+import java.lang.ref.WeakReference;
 
 public class TaCZFabric implements ModInitializer {
     public static final ResourceLocation HIGHEST = ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "event_highest_priority");
@@ -47,6 +51,16 @@ public class TaCZFabric implements ModInitializer {
     public static final ResourceLocation LOW = ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "event_low_priority");
     public static final ResourceLocation LOWEST = ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "event_lowest_priority");
 
+    @Nullable
+    private static WeakReference<MinecraftServer> server;
+
+    @Nullable
+    public static MinecraftServer getServer() {
+        if (server == null) {
+            return null;
+        }
+        return server.get();
+    }
 
     @Override
     public void onInitialize() {
@@ -77,6 +91,8 @@ public class TaCZFabric implements ModInitializer {
         }
 
         CustomIngredientSerializer.register(NBTIngredient.Serializer.INSTANCE);
+
+        ServerLifecycleEvents.SERVER_STARTING.register((server) -> TaCZFabric.server = new WeakReference<>(server));
 
         subscribeEvents();
     }
