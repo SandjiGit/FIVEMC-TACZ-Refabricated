@@ -12,6 +12,7 @@ import com.tacz.guns.inventory.tooltip.AttachmentItemTooltip;
 import com.tacz.guns.resource.index.CommonAttachmentIndex;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.fabricmc.fabric.api.client.rendering.v1.BuiltinItemRendererRegistry;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.component.DataComponents;
@@ -68,7 +69,7 @@ public class AttachmentItem extends Item implements AttachmentItemDataAccessor, 
 
     @Environment(EnvType.CLIENT)
     @Override
-    public BlockEntityWithoutLevelRenderer getCustomRenderer() {
+    public BuiltinItemRendererRegistry.DynamicItemRenderer getCustomRenderer() {
         return AttachmentItemRenderer.INSTANCE.get();
     }
 
