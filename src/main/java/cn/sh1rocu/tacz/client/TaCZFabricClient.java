@@ -17,6 +17,7 @@ import com.tacz.guns.client.init.ModContainerScreen;
 import com.tacz.guns.client.init.ModEntitiesRender;
 import com.tacz.guns.client.init.ParticleFactories;
 import com.tacz.guns.client.input.*;
+import com.tacz.guns.client.sound.SoundPlayManager;
 import com.tacz.guns.init.CommonRegistry;
 import com.tacz.guns.network.NetworkHandler;
 import com.tacz.guns.network.message.handshake.SyncedEntityDataMappingS2CPacket;
@@ -78,8 +79,6 @@ public class TaCZFabricClient implements ClientModInitializer {
 
         EntityHurtByGunEvent.POST.register(PlayerHurtByGunEvent::onPlayerHurtByGun);
 
-        PlaySoundSourceEvent.CALLBACK.register(PlayGunSoundEvent::onPlaySoundSource);
-
         ClientPlayerNetworkEvent.CLONE.register(RefreshClonePlayerDataEvent::onClientPlayerClone);
         ClientTickEvents.START_CLIENT_TICK.register(RefreshClonePlayerDataEvent::onClientTick);
 
@@ -126,5 +125,7 @@ public class TaCZFabricClient implements ClientModInitializer {
 
         InputEvent.Key.EVENT.register(ZoomKey::onZoomKeyPress);
         InputEvent.MouseButton.Post.EVENT.register(ZoomKey::onZoomMousePress);
+
+        ClientTickEvents.END_CLIENT_TICK.register(SoundPlayManager::onClientTick);
     }
 }
