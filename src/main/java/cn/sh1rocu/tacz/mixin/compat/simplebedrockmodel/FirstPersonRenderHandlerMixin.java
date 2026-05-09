@@ -30,7 +30,7 @@ public class FirstPersonRenderHandlerMixin {
                     target = "Lcom/github/mcmodderanchor/simplebedrockmodel/v1/client/renderer/IFPGeoItemRenderer;renderFirstPerson(Lnet/minecraft/client/player/LocalPlayer;Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemDisplayContext;Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;IF)V"
             )
     )
-    private static boolean tacz$onRenderHand(IFPGeoItemRenderer instance, LocalPlayer player, ItemStack itemStack, ItemDisplayContext itemDisplayContext, PoseStack poseStack, MultiBufferSource multiBufferSource, int i, float v, @Local(argsOnly = true) RenderHandEvent event) {
+    private static boolean tacz$onRenderHand(IFPGeoItemRenderer instance, LocalPlayer player, ItemStack itemStack, ItemDisplayContext itemDisplayContext, PoseStack poseStack, MultiBufferSource multiBufferSource, int light, float partialTick, @Local(argsOnly = true) RenderHandEvent event) {
         if (instance instanceof AnimateGeoItemRenderer<?, ?>) {
             ItemDisplayContext transformType;
             if (event.getHand() == InteractionHand.MAIN_HAND) {
@@ -42,12 +42,12 @@ public class FirstPersonRenderHandlerMixin {
             HandRenderer.INSTANCE.renderSolid((poseStack1) -> {
                 instance.renderFirstPerson(
                         player, itemStack, transformType,
-                        poseStack1 == null ? event.getPoseStack() : poseStack1,
-                        event.getMultiBufferSource(),
-                        event.getPackedLight(),
-                        event.getPartialTick()
+                        poseStack1 == null ? poseStack : poseStack1,
+                        multiBufferSource,
+                        light,
+                        partialTick
                 );
-            }, event.getPartialTick(), gameRenderer.getMainCamera(), gameRenderer);
+            }, partialTick, gameRenderer.getMainCamera(), gameRenderer);
             return false;
         }
         return true;
