@@ -468,22 +468,6 @@ public abstract class AbstractGunItem extends Item implements IGun, IAnimationIt
         return 300;
     }
 
-    /**
-     * 获取是否可以趴下射击
-     *
-     * @param gun 枪械
-     * @return 是否可以趴下射击
-     */
-    public boolean isCanCrawl(ItemStack gun) {
-        if (gun.getItem() instanceof IGun) {
-            return TimelessAPI.getCommonGunIndex(this.getGunId(gun))
-                    .map(CommonGunIndex::getGunData)
-                    .map(GunData::isCanCrawl)
-                    .orElse(false);
-        }
-        return false;
-    }
-
     @Override
     public boolean isSame(ItemStack i, ItemStack j) {
         IGun iGun1 = IGun.getIGunOrNull(i);

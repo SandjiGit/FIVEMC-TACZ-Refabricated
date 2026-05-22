@@ -36,7 +36,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.Pose;
 import net.minecraft.world.item.ItemStack;
 import org.apache.commons.math3.analysis.polynomials.PolynomialSplineFunction;
 
@@ -185,10 +184,6 @@ public class CameraSetupEvent {
             float aimingProgress = clientPlayerGunOperator.getClientAimingProgress(partialTicks);
             float zoom = iGun.getAimingZoom(mainHandItem);
             float aimingRecoilModifier = 1 - aimingProgress + aimingProgress / (float) Math.min(Math.sqrt(zoom), 1.5);
-            // 如果是趴下，那么后坐力按 data 设计减少（默认为降低一半）
-            if (!player.isSwimming() && player.getPose() == Pose.SWIMMING) {
-                aimingRecoilModifier = aimingRecoilModifier * gunData.getCrawlRecoilMultiplier();
-            }
             pitchSplineFunction = gunData.getRecoil().genPitchSplineFunction((float) attachmentRecoilModifier.left().eval(aimingRecoilModifier));
             yawSplineFunction = gunData.getRecoil().genYawSplineFunction((float) attachmentRecoilModifier.right().eval(aimingRecoilModifier));
             shootTimeStamp = System.currentTimeMillis();

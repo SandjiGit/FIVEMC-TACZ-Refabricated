@@ -18,13 +18,6 @@ public class KeyClothConfig {
                     KeyConfig.HOLD_TO_AIM.save();
                 }).build());
 
-        key.addEntry(entryBuilder.startBooleanToggle(Component.translatable("config.tacz.client.key.hold_to_crawl"), KeyConfig.HOLD_TO_CRAWL.get())
-                .setDefaultValue(true).setTooltip(Component.translatable("config.tacz.client.key.hold_to_crawl.desc"))
-                .setSaveConsumer(value -> {
-                    KeyConfig.HOLD_TO_CRAWL.set(value);
-                    KeyConfig.HOLD_TO_CRAWL.save();
-                }).build());
-
         key.addEntry(entryBuilder.startBooleanToggle(Component.translatable("config.tacz.client.key.auto_reload"), KeyConfig.AUTO_RELOAD.get())
                 .setDefaultValue(false).setTooltip(Component.translatable("config.tacz.client.key.auto_reload.desc"))
                 .setSaveConsumer((value -> {

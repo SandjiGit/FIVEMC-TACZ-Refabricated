@@ -103,8 +103,6 @@ public class TaCZFabricClient implements ClientModInitializer {
 
 
         InputEvent.Key.EVENT.register(ConfigKey::onOpenConfig);
-        InputEvent.Key.EVENT.register(CrawlKey::onCrawlPress);
-
         InputEvent.Key.EVENT.register(FireSelectKey::onFireSelectKeyPress);
         InputEvent.MouseButton.Post.EVENT.register(FireSelectKey::onFireSelectMousePress);
 

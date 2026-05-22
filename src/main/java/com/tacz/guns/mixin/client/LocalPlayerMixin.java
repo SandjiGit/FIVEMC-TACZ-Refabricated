@@ -19,7 +19,6 @@ public abstract class LocalPlayerMixin implements IClientPlayerGunOperator {
     private final @Unique LocalPlayer tac$player = (LocalPlayer) (Object) this;
     private final @Unique LocalPlayerDataHolder tac$data = new LocalPlayerDataHolder(tac$player);
     private final @Unique LocalPlayerAim tac$aim = new LocalPlayerAim(tac$data, tac$player);
-    private final @Unique LocalPlayerCrawl tac$crawl = new LocalPlayerCrawl(tac$player);
     private final @Unique LocalPlayerBolt tac$bolt = new LocalPlayerBolt(tac$data, tac$player);
     private final @Unique LocalPlayerDraw tac$draw = new LocalPlayerDraw(tac$data, tac$player);
     private final @Unique LocalPlayerFireSelect tac$fireSelect = new LocalPlayerFireSelect(tac$data, tac$player);
@@ -76,18 +75,8 @@ public abstract class LocalPlayerMixin implements IClientPlayerGunOperator {
     }
 
     @Override
-    public boolean isCrawl() {
-        return tac$crawl.isCrawling();
-    }
-
-    @Override
     public LocalPlayerDataHolder getDataHolder() {
         return tac$data;
-    }
-
-    @Override
-    public void crawl(boolean isCrawl) {
-        tac$crawl.crawl(isCrawl);
     }
 
     @Unique
@@ -107,7 +96,6 @@ public abstract class LocalPlayerMixin implements IClientPlayerGunOperator {
         LocalPlayer player = (LocalPlayer) (Object) this;
         if (player.level().isClientSide()) {
             tac$aim.tickAimingProgress();
-            tac$crawl.tickCrawl();
             tac$data.tickStateLock();
             tac$bolt.tickAutoBolt();
             player.setSprinting(tac$sprint.getProcessedSprintStatus(player.isSprinting()));

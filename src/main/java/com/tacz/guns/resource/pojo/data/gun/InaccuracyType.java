@@ -5,7 +5,6 @@ import com.google.gson.annotations.SerializedName;
 import com.tacz.guns.api.entity.IGunOperator;
 import com.tacz.guns.util.HitboxHelper;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.Pose;
 import net.minecraft.world.entity.player.Player;
 
 import java.util.Map;
@@ -49,11 +48,7 @@ public enum InaccuracyType {
         if (aimingProgress == 1.0f) {
             return InaccuracyType.AIM;
         }
-        // MOJANG 的奇妙设计，趴下的姿势名称是 SWIMMING
-        if (!livingEntity.isSwimming() && livingEntity.getPose() == Pose.SWIMMING) {
-            return InaccuracyType.LIE;
-        }
-        if (livingEntity.getPose() == Pose.CROUCHING) {
+        if (livingEntity.isCrouching()) {
             return InaccuracyType.SNEAK;
         }
         if (isMove(livingEntity)) {

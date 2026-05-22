@@ -316,7 +316,7 @@ public class GunAnimationStateContext extends ItemAnimationStateContext {
      * @return 玩家当前是否正在匍匐
      */
     public boolean isCrawl() {
-        return processGunOperator(IClientPlayerGunOperator::isCrawl).orElse(false);
+        return false;
     }
 
     /**

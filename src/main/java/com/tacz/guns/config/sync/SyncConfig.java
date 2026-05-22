@@ -27,8 +27,6 @@ public class SyncConfig {
     public static ModConfigSpec.IntValue AMMO_BOX_STACK_SIZE;
     // 客户端需要下载的枪械包
     public static ModConfigSpec.ConfigValue<List<List<String>>> CLIENT_GUN_PACK_DOWNLOAD_URLS;
-    // 禁用趴下战术动作
-    public static ModConfigSpec.BooleanValue ENABLE_CRAWL;
 
     public static void init(ModConfigSpec.Builder builder) {
         interactKey(builder);
@@ -84,9 +82,6 @@ public class SyncConfig {
 
         builder.comment("Deprecated. Use vanilla server resource pack");
         CLIENT_GUN_PACK_DOWNLOAD_URLS = builder.define("ClientGunPackDownloadUrls", Lists.newArrayList());
-
-        builder.comment("Whether or not players are allowed to use the crawl feature");
-        ENABLE_CRAWL = builder.define("EnableCrawl", true);
 
         builder.comment("Enable the recipe limit of default gunsmith table or not");
         ENABLE_TABLE_FILTER = builder.define("EnableDefaultGunSmithTableFilter", true);

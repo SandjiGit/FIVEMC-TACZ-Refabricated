@@ -6,7 +6,6 @@ import dev.kosmx.playerAnim.api.layered.modifier.AdjustmentModifier;
 import dev.kosmx.playerAnim.core.util.Vec3f;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.Mth;
-import net.minecraft.world.entity.Pose;
 import net.minecraft.world.entity.player.Player;
 
 import java.util.Optional;
@@ -42,12 +41,8 @@ public class AdjustmentYRotModifier implements Function<String, Optional<Adjustm
         float pitch = Mth.wrapDegrees(xRot);
 
         return switch (partName) {
-            case "body" -> {
-                if (!player.isSwimming() && player.getPose() == Pose.SWIMMING) {
-                    yield Optional.of(new AdjustmentModifier.PartModifier(new Vec3f(0, 0, -yaw * Mth.DEG_TO_RAD), Vec3f.ZERO));
-                }
-                yield Optional.of(new AdjustmentModifier.PartModifier(new Vec3f(0, -yaw * Mth.DEG_TO_RAD, 0), Vec3f.ZERO));
-            }
+            case "body" ->
+                    Optional.of(new AdjustmentModifier.PartModifier(new Vec3f(0, -yaw * Mth.DEG_TO_RAD, 0), Vec3f.ZERO));
             case "head" ->
                     Optional.of(new AdjustmentModifier.PartModifier(new Vec3f(pitch * Mth.DEG_TO_RAD, 0, 0), Vec3f.ZERO));
             case "leftArm", "rightArm" -> {

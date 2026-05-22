@@ -49,7 +49,6 @@ public class InaccuracyModifier implements IAttachmentModifier<Map<InaccuracyTyp
         Modifier inaccuracy = data.getInaccuracy();
         Modifier aimInaccuracy = data.getAimInaccuracy();
         Modifier sneakInaccuracy = data.getSneakInaccuracy();
-        Modifier lieInaccuracy = data.getLieInaccuracy();
 
         // 兼容旧版本
         if (inaccuracy == null) {
@@ -66,9 +65,6 @@ public class InaccuracyModifier implements IAttachmentModifier<Map<InaccuracyTyp
                 }
                 case SNEAK -> {
                     if (sneakInaccuracy != null) jsonProperties.put(type, sneakInaccuracy);
-                }
-                case LIE -> {
-                    if (lieInaccuracy != null) jsonProperties.put(type, lieInaccuracy);
                 }
                 default -> jsonProperties.put(type, inaccuracy);
             }
@@ -131,7 +127,6 @@ public class InaccuracyModifier implements IAttachmentModifier<Map<InaccuracyTyp
         return List.of(
                 buildNormal(gunData, cacheProperty, fireModeAdjustData, InaccuracyType.STAND, "gui.tacz.gun_refit.property_diagrams.hipfire_inaccuracy", 10.0),
                 buildNormal(gunData, cacheProperty, fireModeAdjustData, InaccuracyType.SNEAK, "gui.tacz.gun_refit.property_diagrams.sneak_inaccuracy", 5.0),
-                buildNormal(gunData, cacheProperty, fireModeAdjustData, InaccuracyType.LIE, "gui.tacz.gun_refit.property_diagrams.lie_inaccuracy", 5.0),
                 buildAim(gunData, cacheProperty, fireModeAdjustData)
         );
     }
@@ -204,7 +199,6 @@ public class InaccuracyModifier implements IAttachmentModifier<Map<InaccuracyTyp
             createEntry(InaccuracyType.STAND, "tooltip.tacz.attachment.inaccuracy.decrease", "tooltip.tacz.attachment.inaccuracy.increase");
             createEntry(InaccuracyType.AIM, "tooltip.tacz.attachment.aim_inaccuracy.decrease", "tooltip.tacz.attachment.aim_inaccuracy.increase");
             createEntry(InaccuracyType.SNEAK, "tooltip.tacz.attachment.sneak_inaccuracy.decrease", "tooltip.tacz.attachment.sneak_inaccuracy.increase");
-            createEntry(InaccuracyType.LIE, "tooltip.tacz.attachment.lie_inaccuracy.decrease", "tooltip.tacz.attachment.lie_inaccuracy.increase");
         }
 
         private void createEntry(InaccuracyType type, String decreaseKey, String increaseKey) {
@@ -237,10 +231,6 @@ public class InaccuracyModifier implements IAttachmentModifier<Map<InaccuracyTyp
         @SerializedName("sneak_inaccuracy")
         private Modifier sneakInaccuracy;
 
-        @Nullable
-        @SerializedName("lie_inaccuracy")
-        private Modifier lieInaccuracy;
-
         @SerializedName("inaccuracy_addend")
         @Deprecated
         private float adsAddendTime = 0;
@@ -258,11 +248,6 @@ public class InaccuracyModifier implements IAttachmentModifier<Map<InaccuracyTyp
         @Nullable
         public Modifier getSneakInaccuracy() {
             return sneakInaccuracy;
-        }
-
-        @Nullable
-        public Modifier getLieInaccuracy() {
-            return lieInaccuracy;
         }
 
         @Deprecated

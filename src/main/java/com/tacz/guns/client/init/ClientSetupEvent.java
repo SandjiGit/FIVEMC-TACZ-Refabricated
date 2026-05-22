@@ -54,7 +54,6 @@ public class ClientSetupEvent {
         registerKeyBinding(ReloadKey.RELOAD_KEY/*, KeyConflictContext.IN_GAME, KeyModifier.NONE*/);
         registerKeyBinding(InteractKey.INTERACT_KEY/*, KeyConflictContext.IN_GAME, KeyModifier.NONE*/);
         registerKeyBinding(FireSelectKey.FIRE_SELECT_KEY/*, KeyConflictContext.IN_GAME, KeyModifier.NONE*/);
-        registerKeyBinding(CrawlKey.CRAWL_KEY/*, KeyConflictContext.IN_GAME, KeyModifier.NONE*/);
         registerKeyBinding(RefitKey.REFIT_KEY/*, KeyConflictContext.IN_GAME, KeyModifier.NONE*/);
         registerKeyBinding(ZoomKey.ZOOM_KEY/*, KeyConflictContext.IN_GAME, KeyModifier.NONE*/);
         registerKeyBinding(MeleeKey.MELEE_KEY/*, KeyConflictContext.IN_GAME, KeyModifier.NONE*/);

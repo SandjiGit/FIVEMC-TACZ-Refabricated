@@ -43,10 +43,6 @@ public class ControllableInner {
             context -> Optional.of(() -> ZoomKey.onZoomControllerPress(true)),
             context -> ZoomKey.onZoomControllerPress(false))
     );
-    public static final ButtonBinding CRAWL = new ButtonBinding(Buttons.LEFT_THUMB_STICK, "key.tacz.crawl.desc", "key.category.tacz", GUN_KEY_CONFLICT, OnPressAndReleaseHandler.create(
-            context -> Optional.of(() -> CrawlKey.onCrawlControllerPress(true)),
-            context -> CrawlKey.onCrawlControllerPress(false))
-    );
     public static final ButtonBinding FIRE_SELECT = new ButtonBinding(Buttons.DPAD_LEFT, "key.tacz.fire_select.desc", "key.category.tacz", GUN_KEY_CONFLICT, OnPressAndReleaseHandler.create(
             context -> Optional.of(() -> FireSelectKey.onFireSelectControllerPress(true)),
             context -> FireSelectKey.onFireSelectControllerPress(false))
@@ -65,7 +61,6 @@ public class ControllableInner {
         Controllable.getBindingRegistry().register(SHOOT);
         Controllable.getBindingRegistry().register(RELOAD);
         Controllable.getBindingRegistry().register(MELEE);
-        Controllable.getBindingRegistry().register(CRAWL);
         Controllable.getBindingRegistry().register(ZOOM);
         Controllable.getBindingRegistry().register(FIRE_SELECT);
         Controllable.getBindingRegistry().register(INTERACT);

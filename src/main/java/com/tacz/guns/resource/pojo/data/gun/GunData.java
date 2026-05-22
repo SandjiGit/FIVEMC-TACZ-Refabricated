@@ -32,9 +32,6 @@ public class GunData {
     @SerializedName("extended_mag_ammo_amount")
     private int @Nullable [] extendedMagAmmoAmount = null;
 
-    @SerializedName("can_crawl")
-    private boolean canCrawl = true;
-
     @SerializedName("can_slide")
     private boolean canSlide = true;
 
@@ -79,9 +76,6 @@ public class GunData {
 
     @SerializedName("burst_data")
     private BurstData burstData = new BurstData();
-
-    @SerializedName("crawl_recoil_multiplier")
-    private float crawlRecoilMultiplier = 0.5f;
 
     @SerializedName("recoil")
     private GunRecoil recoil = new GunRecoil();
@@ -140,10 +134,6 @@ public class GunData {
 
     public int @Nullable [] getExtendedMagAmmoAmount() {
         return extendedMagAmmoAmount;
-    }
-
-    public boolean isCanCrawl() {
-        return canCrawl;
     }
 
     public boolean canSlide() {
@@ -226,10 +216,6 @@ public class GunData {
             return fireModeAdjust.get(fireMode);
         }
         return null;
-    }
-
-    public float getCrawlRecoilMultiplier() {
-        return crawlRecoilMultiplier;
     }
 
     public GunRecoil getRecoil() {

@@ -91,10 +91,6 @@ public class ShooterDataHolder {
     public int shootCount = 0;
     public float chargeProgress = 0f;
     /**
-     * 是否处于趴下状态
-     */
-    public boolean isCrawling = false;
-    /**
      * 用于缓存 lua 脚本的数据
      */
     @Nullable

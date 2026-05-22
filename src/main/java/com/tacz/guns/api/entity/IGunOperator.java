@@ -153,11 +153,6 @@ public interface IGunOperator {
     void aim(boolean isAim);
 
     /**
-     * 服务端应用趴下逻辑
-     */
-    void crawl(boolean isCrawl);
-
-    /**
      * 更新枪械的配件属性修改值
      * <p>
      * 通过将配件修改的属性值缓存在实体上，避免频繁的计算，提升性能
