@@ -1,14 +1,12 @@
 package com.tacz.guns.client.input;
 
 import cn.sh1rocu.tacz.api.event.InputEvent;
-import com.mojang.blaze3d.platform.InputConstants;
 import com.tacz.guns.api.client.gameplay.IClientPlayerGunOperator;
 import com.tacz.guns.api.item.IGun;
 import com.tacz.guns.config.client.KeyConfig;
 import com.tacz.guns.util.InputExtraCheck;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
 import org.lwjgl.glfw.GLFW;
@@ -17,13 +15,10 @@ import static com.tacz.guns.util.InputExtraCheck.isInGame;
 
 @Environment(EnvType.CLIENT)
 public class AimKey {
-    public static final KeyMapping AIM_KEY = new KeyMapping("key.tacz.aim.desc",
-            InputConstants.Type.MOUSE,
-            GLFW.GLFW_MOUSE_BUTTON_RIGHT,
-            "key.category.tacz");
+    private static final int AIM_BUTTON = GLFW.GLFW_MOUSE_BUTTON_RIGHT;
 
     public static void onAimPress(InputEvent.MouseButton.Post event) {
-        if (isInGame() && AIM_KEY.matchesMouse(event.getButton())) {
+        if (isInGame() && event.getButton() == AIM_BUTTON) {
             LocalPlayer player = Minecraft.getInstance().player;
             if (player == null || player.isSpectator()) {
                 return;
@@ -58,27 +53,32 @@ public class AimKey {
             return;
         }
         Minecraft mc = Minecraft.getInstance();
-        boolean press = AimKey.AIM_KEY.isDown();
-        if (InputExtraCheck.isInGame()) {
-            LocalPlayer player = mc.player;
-            if (player == null || player.isSpectator()) {
+        if (!InputExtraCheck.isInGame()) {
+            return;
+        }
+        boolean press = isAimButtonDown(mc);
+        LocalPlayer player = mc.player;
+        if (player == null || player.isSpectator()) {
+            return;
+        }
+        if (!(player instanceof IClientPlayerGunOperator operator)) {
+            return;
+        }
+        if (operator.isAim() && press) {
+            return;
+        }
+        if (!operator.isAim()) {
+            if (!press) {
                 return;
-            }
-            if (!(player instanceof IClientPlayerGunOperator operator)) {
-                return;
-            }
-            if (operator.isAim() && press) {
-                return;
-            }
-            if (!operator.isAim()) {
-                if (!press) {
-                    return;
-                }
-            }
-            if (IGun.mainHandHoldGun(player)) {
-                IClientPlayerGunOperator.fromLocalPlayer(player).aim(press);
             }
         }
+        if (IGun.mainHandHoldGun(player)) {
+            IClientPlayerGunOperator.fromLocalPlayer(player).aim(press);
+        }
+    }
+
+    private static boolean isAimButtonDown(Minecraft mc) {
+        return GLFW.glfwGetMouseButton(mc.getWindow().getWindow(), AIM_BUTTON) == GLFW.GLFW_PRESS;
     }
 
     public static boolean onAimControllerPress(boolean isPress) {

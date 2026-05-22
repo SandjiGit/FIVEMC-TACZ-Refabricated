@@ -52,10 +52,8 @@ public class ClientSetupEvent {
         // MKB 1.21存在不能单独设置alt, ctrl, shift的bug，暂时弃用
         registerKeyBinding(InspectKey.INSPECT_KEY/*, KeyConflictContext.IN_GAME, KeyModifier.NONE*/);
         registerKeyBinding(ReloadKey.RELOAD_KEY/*, KeyConflictContext.IN_GAME, KeyModifier.NONE*/);
-        registerKeyBinding(ShootKey.SHOOT_KEY/*, KeyConflictContext.IN_GAME, KeyModifier.NONE*/);
         registerKeyBinding(InteractKey.INTERACT_KEY/*, KeyConflictContext.IN_GAME, KeyModifier.NONE*/);
         registerKeyBinding(FireSelectKey.FIRE_SELECT_KEY/*, KeyConflictContext.IN_GAME, KeyModifier.NONE*/);
-        registerKeyBinding(AimKey.AIM_KEY/*, KeyConflictContext.IN_GAME, KeyModifier.NONE*/);
         registerKeyBinding(CrawlKey.CRAWL_KEY/*, KeyConflictContext.IN_GAME, KeyModifier.NONE*/);
         registerKeyBinding(RefitKey.REFIT_KEY/*, KeyConflictContext.IN_GAME, KeyModifier.NONE*/);
         registerKeyBinding(ZoomKey.ZOOM_KEY/*, KeyConflictContext.IN_GAME, KeyModifier.NONE*/);
