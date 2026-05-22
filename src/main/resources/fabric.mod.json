@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "tacz",
-  "version": "${version}",
+  "version": "0.6.1-forge1.1.8",
   "name": "Timeless & Classics Guns: Zero Refabricated",
   "description": "An unofficial Fabric port of Timeless & Classics Guns: Zero",
   "authors": [
@@ -54,7 +54,7 @@
   ],
   "accessWidener": "tacz.accesswidener",
   "depends": {
-    "fabricloader": ">=${loader_version}",
+    "fabricloader": ">=0.17.2",
     "fabric": "*",
     "minecraft": [
       "1.21.1"

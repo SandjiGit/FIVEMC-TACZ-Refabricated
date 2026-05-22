@@ -20,7 +20,7 @@ public class AmmoConfig {
         builder.push("ammo");
 
         builder.comment("Warning: Ammo with explosive properties can break blocks");
-        EXPLOSIVE_AMMO_DESTROYS_BLOCK = builder.define("ExplosiveAmmoDestroysBlock", true);
+        EXPLOSIVE_AMMO_DESTROYS_BLOCK = builder.define("ExplosiveAmmoDestroysBlock", false);
 
         builder.comment("Warning: Ammo with explosive properties can set the surroundings on fire");
         EXPLOSIVE_AMMO_FIRE = builder.define("ExplosiveAmmoFire", false);
@@ -35,7 +35,7 @@ public class AmmoConfig {
         PASS_THROUGH_BLOCKS = builder.define("PassThroughBlocks", Lists.newArrayList());
 
         builder.comment("Whether a ammo can break the glass");
-        DESTROY_GLASS = builder.define("DestroyGlass", true);
+        DESTROY_GLASS = builder.define("DestroyGlass", false);
 
         builder.comment("Whether a ammo can ignite the block");
         IGNITE_BLOCK = builder.define("IgniteBlock", true);

@@ -13,6 +13,15 @@ public class LayerGunShow {
     @SerializedName("scale")
     private Vector3f scale = new Vector3f(0.6f, 0.6f, 0.6f);
 
+    public LayerGunShow() {
+    }
+
+    public LayerGunShow(Vector3f pos, Vector3f rotate, Vector3f scale) {
+        this.pos = pos;
+        this.rotate = rotate;
+        this.scale = scale;
+    }
+
     public Vector3f getPos() {
         return pos;
     }

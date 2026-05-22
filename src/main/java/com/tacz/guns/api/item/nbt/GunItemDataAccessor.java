@@ -36,6 +36,7 @@ public interface GunItemDataAccessor extends IGun {
     String GUN_MAX_DUMMY_AMMO = "MaxDummyAmmo";
     String GUN_ATTACHMENT_LOCK = "AttachmentLock";
     String GUN_DISPLAY_ID_TAG = "GunDisplayId";
+    String BODY_GUN_VISIBLE_TAG = "BodyGunVisible";
     String LASER_COLOR_TAG = "LaserColor";
     String GUN_OVERHEAT_TAG = "HeatAmount";
     String GUN_OVERHEAT_LOCK_TAG = "OverHeated";
@@ -146,6 +147,22 @@ public interface GunItemDataAccessor extends IGun {
             if (displayId != null) {
                 tag.putString(GUN_DISPLAY_ID_TAG, displayId.toString());
             }
+        }));
+    }
+
+    @Override
+    default boolean isBodyGunVisible(ItemStack gun) {
+        CompoundTag nbt = gun.getOrDefault(DataComponents.CUSTOM_DATA, CustomData.EMPTY).copyTag();
+        if (nbt.contains(BODY_GUN_VISIBLE_TAG, Tag.TAG_BYTE)) {
+            return nbt.getBoolean(BODY_GUN_VISIBLE_TAG);
+        }
+        return true;
+    }
+
+    @Override
+    default void setBodyGunVisible(ItemStack gun, boolean visible) {
+        gun.update(DataComponents.CUSTOM_DATA, CustomData.EMPTY, data -> data.update(tag -> {
+            tag.putBoolean(BODY_GUN_VISIBLE_TAG, visible);
         }));
     }
 

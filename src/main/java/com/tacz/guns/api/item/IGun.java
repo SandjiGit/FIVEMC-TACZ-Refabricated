@@ -148,6 +148,16 @@ public interface IGun {
     void setGunDisplayId(ItemStack gun, @Nullable ResourceLocation displayId);
 
     /**
+     * Whether this item should be rendered on the player's body when it is stored in inventory. Defaults to visible.
+     */
+    boolean isBodyGunVisible(ItemStack gun);
+
+    /**
+     * Controls the inventory body render for this specific gun item stack.
+     */
+    void setBodyGunVisible(ItemStack gun, boolean visible);
+
+    /**
      * 获取输入的经验值对应的等级。
      *
      * @param exp 经验值

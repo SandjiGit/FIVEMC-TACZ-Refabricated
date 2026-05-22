@@ -141,14 +141,10 @@ public class GunHudOverlay implements LayeredDraw.Layer {
         graphics.drawString(font, inventoryAmmoCountText, (int) ((width - 68 + mc.font.width(currentAmmoCountText) * 1.5f) / 0.8f), (int) ((height - 43) / 0.8f), inventoryAmmoCountColor, false);
         poseStack.popPose();
 
-        // 模组版本信息
-        String minecraftVersion = SharedConstants.getCurrentVersion().getName();
-        String modVersion = FabricLoader.getInstance().getModContainer(GunMod.MOD_ID).orElseThrow().getMetadata().getVersion().getFriendlyString();
-        String debugInfo = String.format("%s-%s", minecraftVersion, modVersion);
         // 文本
         poseStack.pushPose();
         poseStack.scale(0.5f, 0.5f, 1);
-        graphics.drawString(font, debugInfo, (int) ((width - 70) / 0.5f), (int) ((height - 29f) / 0.5f), 0xffaaaaaa);
+        graphics.drawString(font, "FIVEMC BETA", (int) ((width - 70) / 0.5f), (int) ((height - 29f) / 0.5f), 0xffaaaaaa);
         poseStack.popPose();
 
         // 图标渲染

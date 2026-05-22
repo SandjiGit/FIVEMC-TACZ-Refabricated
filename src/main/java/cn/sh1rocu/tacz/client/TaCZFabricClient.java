@@ -17,6 +17,7 @@ import com.tacz.guns.client.init.ModContainerScreen;
 import com.tacz.guns.client.init.ModEntitiesRender;
 import com.tacz.guns.client.init.ParticleFactories;
 import com.tacz.guns.client.input.*;
+import com.tacz.guns.client.renderer.other.HumanoidOffhandRender;
 import com.tacz.guns.client.sound.SoundPlayManager;
 import com.tacz.guns.init.CommonRegistry;
 import com.tacz.guns.network.NetworkHandler;
@@ -86,6 +87,7 @@ public class TaCZFabricClient implements ClientModInitializer {
 
         RenderTickEvent.CALLBACK.register(RenderCrosshairEvent::onRenderTick);
 
+        RenderLivingEvent.POST.register(HumanoidOffhandRender::renderInventoryGuns);
         RenderLivingEvent.POST.register(RenderHeadShotAABB::onRenderEntity);
 
         ClientTickEvents.START_CLIENT_TICK.register(TickAnimationEvent::tickAnimation);

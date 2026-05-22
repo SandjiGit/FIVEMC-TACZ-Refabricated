@@ -13,6 +13,7 @@ public class RootCommand {
         LiteralArgumentBuilder<CommandSourceStack> root = Commands.literal(ROOT_NAME)
                 .requires((source -> source.hasPermission(2)));
         root.then(AttachmentLockCommand.get());
+        root.then(BodyGunCommand.get());
         root.then(DebugCommand.get());
         root.then(DummyAmmoCommand.get());
         root.then(OverwriteCommand.get());
