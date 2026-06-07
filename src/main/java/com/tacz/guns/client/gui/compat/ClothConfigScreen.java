@@ -26,7 +26,6 @@ public class ClothConfigScreen extends Screen {
     protected void init() {
         int posX = (this.width - 200) / 2;
         int posY = this.height / 2;
-        this.message = MultiLineLabel.create(this.font, Component.translatable("gui.tacz.cloth_config_warning.tips"), 300);
         this.addRenderableWidget(
                 Button.builder(Component.translatable("gui.tacz.cloth_config_warning.download"), b -> openUrl(CLOTH_CONFIG_URL))
                         .bounds(posX, posY - 15, 200, 20).build()
