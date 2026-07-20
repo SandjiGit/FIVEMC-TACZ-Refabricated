@@ -59,6 +59,12 @@ public class ModSyncedEntityData {
             .syncMode(SyncedDataKey.SyncMode.ALL)
             .build();
 
+    public static final SyncedDataKey<LivingEntity, BodyGunDisplayData> BODY_GUN_DISPLAY_KEY = SyncedDataKey.builder(SyncedClassKey.LIVING_ENTITY, ModSerializers.BODY_GUN_DISPLAY)
+            .id(ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "body_gun_display"))
+            .defaultValueSupplier(() -> BodyGunDisplayData.EMPTY)
+            .syncMode(SyncedDataKey.SyncMode.TRACKING_ONLY)
+            .build();
+
     public static final SyncedDataKey<LivingEntity, Integer> THROWABLE_USE_TICK = SyncedDataKey.builder(SyncedClassKey.LIVING_ENTITY, Serializers.INTEGER)
             .id(ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "throwable_using"))
             .defaultValueSupplier(() -> -1)
@@ -74,6 +80,7 @@ public class ModSyncedEntityData {
         registerEntityData(IS_AIMING_KEY);
         registerEntityData(SPRINT_TIME_KEY);
         registerEntityData(IS_BOLTING_KEY);
+        registerEntityData(BODY_GUN_DISPLAY_KEY);
         registerEntityData(THROWABLE_USE_TICK);
     }
 

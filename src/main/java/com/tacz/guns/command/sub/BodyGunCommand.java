@@ -30,6 +30,7 @@ public class BodyGunCommand {
         ItemStack stack = getHeldGun(context.getSource());
         IGun iGun = (IGun) stack.getItem();
         iGun.setBodyGunVisible(stack, true);
+        context.getSource().getPlayerOrException().getInventory().setChanged();
         context.getSource().sendSuccess(() -> Component.literal("Body gun display enabled."), true);
         return Command.SINGLE_SUCCESS;
     }
@@ -38,6 +39,7 @@ public class BodyGunCommand {
         ItemStack stack = getHeldGun(context.getSource());
         IGun iGun = (IGun) stack.getItem();
         iGun.setBodyGunVisible(stack, false);
+        context.getSource().getPlayerOrException().getInventory().setChanged();
         context.getSource().sendSuccess(() -> Component.literal("Body gun display disabled."), true);
         return Command.SINGLE_SUCCESS;
     }

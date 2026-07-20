@@ -6,6 +6,8 @@ import com.mojang.math.Axis;
 import com.tacz.guns.api.TimelessAPI;
 import com.tacz.guns.api.item.IGun;
 import com.tacz.guns.client.resource.pojo.display.gun.LayerGunShow;
+import com.tacz.guns.entity.sync.BodyGunDisplayData;
+import com.tacz.guns.entity.sync.ModSyncedEntityData;
 import com.tacz.guns.util.math.MathUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
@@ -64,12 +66,27 @@ public class HumanoidOffhandRender {
         if (!(entity instanceof Player player)) {
             return;
         }
+        if (player != Minecraft.getInstance().player) {
+            renderSyncedStoredGuns(player, matrixStack, buffer, packedLight);
+            return;
+        }
+        renderLocalStoredGuns(player, matrixStack, buffer, packedLight);
+    }
+
+    private static void renderLocalStoredGuns(Player player, PoseStack matrixStack, MultiBufferSource buffer, int packedLight) {
         Inventory inventory = player.getInventory();
         for (int i = 0; i < inventory.items.size(); i++) {
             if (i == inventory.selected) {
                 continue;
             }
-            renderStoredGun(entity, matrixStack, buffer, packedLight, inventory.items.get(i), i);
+            renderStoredGun(player, matrixStack, buffer, packedLight, inventory.items.get(i), i);
+        }
+    }
+
+    private static void renderSyncedStoredGuns(Player player, PoseStack matrixStack, MultiBufferSource buffer, int packedLight) {
+        BodyGunDisplayData displayData = ModSyncedEntityData.BODY_GUN_DISPLAY_KEY.getValue(player);
+        for (BodyGunDisplayData.Entry entry : displayData.entries()) {
+            renderStoredGun(player, matrixStack, buffer, packedLight, entry.itemStack(), entry.inventoryIndex());
         }
     }
 
