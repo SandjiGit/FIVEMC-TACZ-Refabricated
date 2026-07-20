@@ -2,12 +2,12 @@ package com.tacz.guns.entity.sync;
 
 import com.tacz.guns.api.entity.ReloadState;
 import com.tacz.guns.entity.sync.core.IDataSerializer;
-import com.tacz.guns.entity.sync.core.Serializers;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.item.ItemStack;
 
@@ -60,19 +60,23 @@ public class ModSerializers {
     public static final IDataSerializer<BodyGunDisplayData> BODY_GUN_DISPLAY = new IDataSerializer<>() {
         @Override
         public void write(FriendlyByteBuf buf, BodyGunDisplayData value) {
-            buf.writeVarInt(value.entries().size());
+            RegistryFriendlyByteBuf registryBuf = requireRegistryBuffer(buf);
+            registryBuf.writeVarInt(value.entries().size());
             for (BodyGunDisplayData.Entry entry : value.entries()) {
-                buf.writeVarInt(entry.inventoryIndex());
-                Serializers.ITEM_STACK.write(buf, entry.itemStack());
+                registryBuf.writeByte(entry.inventoryIndex());
+                ItemStack.STREAM_CODEC.encode(registryBuf, entry.itemStack());
             }
         }
 
         @Override
         public BodyGunDisplayData read(FriendlyByteBuf buf) {
-            int size = readEntryCount(buf);
+            RegistryFriendlyByteBuf registryBuf = requireRegistryBuffer(buf);
+            int size = readEntryCount(registryBuf);
             List<BodyGunDisplayData.Entry> entries = new ArrayList<>(size);
             for (int index = 0; index < size; index++) {
-                entries.add(new BodyGunDisplayData.Entry(buf.readVarInt(), Serializers.ITEM_STACK.read(buf)));
+                entries.add(new BodyGunDisplayData.Entry(
+                        registryBuf.readUnsignedByte(),
+                        ItemStack.STREAM_CODEC.decode(registryBuf)));
             }
             return entries.isEmpty() ? BodyGunDisplayData.EMPTY : new BodyGunDisplayData(entries);
         }
@@ -111,5 +115,12 @@ public class ModSerializers {
             throw new IllegalArgumentException("Invalid body gun entry count: " + size);
         }
         return size;
+    }
+
+    private static RegistryFriendlyByteBuf requireRegistryBuffer(FriendlyByteBuf buf) {
+        if (buf instanceof RegistryFriendlyByteBuf registryBuf) {
+            return registryBuf;
+        }
+        throw new IllegalArgumentException("Body gun data requires a registry-aware network buffer");
     }
 }

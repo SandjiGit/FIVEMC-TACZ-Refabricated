@@ -9,6 +9,8 @@ import net.minecraft.world.entity.player.Inventory;
 public final class BodyGunDisplayTracker {
     private int inventoryRevision = Integer.MIN_VALUE;
     private int selectedSlot = -1;
+    private BodyGunDisplayData displayData = BodyGunDisplayData.EMPTY;
+    private boolean initialized;
 
     public void tick(ServerPlayer player) {
         Inventory inventory = player.getInventory();
@@ -18,6 +20,10 @@ public final class BodyGunDisplayTracker {
         }
         inventoryRevision = currentRevision;
         selectedSlot = inventory.selected;
-        ModSyncedEntityData.BODY_GUN_DISPLAY_KEY.setValue(player, BodyGunDisplayData.fromInventory(inventory));
+        if (!initialized || !displayData.matchesInventory(inventory)) {
+            initialized = true;
+            displayData = BodyGunDisplayData.fromInventory(inventory);
+            ModSyncedEntityData.BODY_GUN_DISPLAY_KEY.setValue(player, displayData);
+        }
     }
 }

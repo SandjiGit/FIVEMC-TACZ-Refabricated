@@ -19,18 +19,49 @@ public record BodyGunDisplayData(List<Entry> entries) {
     }
 
     public static BodyGunDisplayData fromInventory(Inventory inventory) {
-        List<Entry> entries = new ArrayList<>();
+        List<Entry> entries = null;
         for (int slot = 0; slot < inventory.items.size(); slot++) {
             if (slot == inventory.selected) {
                 continue;
             }
             ItemStack stack = inventory.items.get(slot);
-            IGun gun = IGun.getIGunOrNull(stack);
-            if (gun != null && gun.isBodyGunVisible(stack)) {
+            if (isVisibleGun(stack)) {
+                if (entries == null) {
+                    entries = new ArrayList<>(2);
+                }
                 entries.add(new Entry(slot, stack));
             }
         }
-        return entries.isEmpty() ? EMPTY : new BodyGunDisplayData(entries);
+        return entries == null ? EMPTY : new BodyGunDisplayData(entries);
+    }
+
+    /**
+     * Checks the current render projection without allocating copied item stacks.
+     */
+    public boolean matchesInventory(Inventory inventory) {
+        int entryIndex = 0;
+        for (int slot = 0; slot < inventory.items.size(); slot++) {
+            if (slot == inventory.selected) {
+                continue;
+            }
+            ItemStack stack = inventory.items.get(slot);
+            if (!isVisibleGun(stack)) {
+                continue;
+            }
+            if (entryIndex >= entries.size()) {
+                return false;
+            }
+            Entry entry = entries.get(entryIndex++);
+            if (entry.inventoryIndex != slot || !ItemStack.matches(entry.itemStack, stack)) {
+                return false;
+            }
+        }
+        return entryIndex == entries.size();
+    }
+
+    private static boolean isVisibleGun(ItemStack stack) {
+        IGun gun = IGun.getIGunOrNull(stack);
+        return gun != null && gun.isBodyGunVisible(stack);
     }
 
     public record Entry(int inventoryIndex, ItemStack itemStack) {

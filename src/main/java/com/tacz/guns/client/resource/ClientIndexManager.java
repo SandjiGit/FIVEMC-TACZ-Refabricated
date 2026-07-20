@@ -30,6 +30,7 @@ import java.util.Set;
 @Environment(EnvType.CLIENT)
 public class ClientIndexManager {
     private static final int HOTBAR_SLOT_COUNT = 9;
+    private static int resourceGeneration;
 
     public static final Map<ResourceLocation, GunDisplayInstance> GUN_DISPLAY = Maps.newHashMap();
     public static final Map<ResourceLocation, ClientGunIndex> GUN_INDEX = Maps.newHashMap();
@@ -43,6 +44,14 @@ public class ClientIndexManager {
         AMMO_INDEX.clear();
         ATTACHMENT_INDEX.clear();
         BLOCK_INDEX.clear();
+        resourceGeneration++;
+    }
+
+    /**
+     * Changes whenever cached client gun resources become invalid.
+     */
+    public static int getResourceGeneration() {
+        return resourceGeneration;
     }
 
     public static void reload() {
